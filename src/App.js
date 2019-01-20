@@ -1,28 +1,44 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+// import 'typeface-roboto';
+import Complaint from "./components/Complaint";
+import withStyles from "@material-ui/core/styles/withStyles";
+import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
+import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
+
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: '"Product Sans", serif',
+  },
+  palette: {
+    primary: { main: '#257BDE' },
+    secondary: { main: '#34C3DD' },
+  },
+});
+
+const styles = {
+  root: {
+    width: '100%',
+    backgroundColor: '#0E4787'
+  },
+  topBar: {
+    backgroundColor: '#81B1E8',
+    height: '20px'
+  }
+};
 
 class App extends Component {
   render() {
+    const { classes } = this.props;
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+        <MuiThemeProvider theme={theme}>
+          <div className={classes.root}>
+            <div className={classes.topBar}/>
+            <Complaint/>
+          </div>
+        </MuiThemeProvider>
     );
   }
 }
 
-export default App;
+export default withStyles(styles)(App);

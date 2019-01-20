@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Alef');
+
 .App {
   text-align: center;
 }
@@ -29,4 +31,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+input[type=file] {
+  visibility: hidden;
+  position: absolute
 }
