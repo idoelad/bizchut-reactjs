@@ -37,19 +37,41 @@ const styles = {
     fileInput: {
         width: 0,
         height: 0
-    }
+    },
+    images: {
+        display: 'flex',
+        // flexDirection: 'horizontal',
+        flexFlow: 'row wrap'
+    },
+    button: {
+        height: 50,
+        width: 50,
+        marginLeft: 15,
+        marginBottom: 15,
+        minWidth: '0 !important',
+        lineHeight: 1,
+        boxShadow: 'none',
+        backgroundColor: '#FFFFFF',
+        border: '1px solid black'
 
+    },
+    imgUploads: {
+        height: 50,
+        width: 50,
+        marginLeft: 15,
+        marginBottom: 15
+    }
 };
 
 
 class ComplaintDetails extends Component {
 
-    handleImageChange(e) {
+    handleAddImage(e) {
         e.preventDefault();
         let reader = new FileReader();
         let file = e.target.files[0];
         reader.onloadend = () => {
-            this.setState({
+            this.props.addImage({
                 file: file,
                 imagePreviewUrl: reader.result
             });
@@ -84,18 +106,33 @@ class ComplaintDetails extends Component {
                         </FormControl>
                         <FormControl component="fieldset" className={classes.formControl}>
                             <FormLabel className={classes.formLabel} component="legend">העלאת קובץ וידאו או תמונה</FormLabel>
+                            <div className={classes.images}>
+                                <Button variant="contained" className={classes.button} >
+                                    <label htmlFor='single'>
+                                        <AddAPhotoIcon/>
+                                    </label>
+                                    <input type="file" id='single' onChange={(e)=>this.handleAddImage(e)}/>
+                                </Button>
+                                {
+                                    values.images.map(img => {
+                                        console.log(img);
+                                        return (
+                                        <div key={img.file.lastModified}>
+                                            <img src={img.imagePreviewUrl} className={classes.imgUploads}/>
+                                        </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        </FormControl>
+                        <FormControl component="fieldset" className={classes.formControl}>
+                            <FormLabel className={classes.formLabel} component="legend">הקלטה קולית - ספרו לנו מה קרה</FormLabel>
                             <Button variant="contained" size="small" className={classes.button} >
                                 <label htmlFor='single'>
                                     <AddAPhotoIcon/>
                                 </label>
-                                <input type="file" id='single' onChange={(e)=>this.handleImageChange(e)}/>
+                                <input type="file" accept="audio/*;capture=microphone" capture/>
                             </Button>
-                            {/*<div>*/}
-                            {/*<img src={this.imagePreviewUrl}/>*/}
-                            {/*</div>*/}
-                        </FormControl>
-                        <FormControl component="fieldset" className={classes.formControl}>
-                            <FormLabel className={classes.formLabel} component="legend">הקלטה קולית - ספרו לנו מה קרה</FormLabel>
                         </FormControl>
                     </form>
                 </div>

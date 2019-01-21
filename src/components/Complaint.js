@@ -70,10 +70,16 @@ class Complaint extends Component {
         this.setState({ [input]: e.target.value });
     };
 
+    addImage = (image) => {
+        let { images } = this.state;
+        this.state.images.push(image);
+        this.setState( {images: images} );
+    };
+
     renderStep() {
         const { step } = this.state;
-        const { instituteType, instituteName, instituteAddress, whatHappened } = this.state;
-        const values = { instituteType, instituteName, instituteAddress, whatHappened};
+        const { instituteType, instituteName, instituteAddress, whatHappened, images } = this.state;
+        const values = { instituteType, instituteName, instituteAddress, whatHappened, images};
 
         switch(step) {
             case 1:
@@ -93,6 +99,7 @@ class Complaint extends Component {
                         nextStep={this.nextStep}
                         handleChange={this.handleChange}
                         values={values}
+                        addImage={this.addImage}
                     />
                 );
                 break;
