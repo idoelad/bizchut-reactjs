@@ -72,8 +72,14 @@ class Complaint extends Component {
 
     addImage = (image) => {
         let { images } = this.state;
-        this.state.images.push(image);
+        images.push(image);
         this.setState( {images: images} );
+    };
+
+    removeImage = (imageToRemove) => {
+        let { images } = this.state;
+        let newImages = images.filter(image => image !== imageToRemove);
+        this.setState( {images: newImages} );
     };
 
     renderStep() {
@@ -100,6 +106,7 @@ class Complaint extends Component {
                         handleChange={this.handleChange}
                         values={values}
                         addImage={this.addImage}
+                        removeImage={this.removeImage}
                     />
                 );
                 break;

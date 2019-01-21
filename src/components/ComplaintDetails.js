@@ -60,7 +60,21 @@ const styles = {
         width: 50,
         marginLeft: 15,
         marginBottom: 15
+    },
+    imageWrapper: {
+        position: 'relative',
+        display: 'inline-block'
+    },
+    removeImage: {
+        position: 'absolute',
+        top: 0,
+        right: 3,
+        cursor: 'pointer',
+        color: '#FFFFFF',
+        fontWeight: 800,
+        fontSize: 20
     }
+
 };
 
 
@@ -79,8 +93,9 @@ class ComplaintDetails extends Component {
         reader.readAsDataURL(file)
     }
 
+
     render() {
-        const { classes, values, handleChange } = this.props;
+        const { classes, values, handleChange, removeImage} = this.props;
         return (
             <div className={classes.root}>
                 <div className={classes.pageTitle}>
@@ -107,22 +122,24 @@ class ComplaintDetails extends Component {
                         <FormControl component="fieldset" className={classes.formControl}>
                             <FormLabel className={classes.formLabel} component="legend">העלאת קובץ וידאו או תמונה</FormLabel>
                             <div className={classes.images}>
+                                {
+                                    values.images.map(img => {
+                                        return (
+                                        <div key={img.file.lastModified}>
+                                            <div className={classes.imageWrapper}>
+                                                <img src={img.imagePreviewUrl} className={classes.imgUploads}/>
+                                                <span className={classes.removeImage} onClick={(e) => removeImage(img)}>X</span>
+                                            </div>
+                                        </div>
+                                        )
+                                    })
+                                }
                                 <Button variant="contained" className={classes.button} >
                                     <label htmlFor='single'>
                                         <AddAPhotoIcon/>
                                     </label>
                                     <input type="file" id='single' onChange={(e)=>this.handleAddImage(e)}/>
                                 </Button>
-                                {
-                                    values.images.map(img => {
-                                        console.log(img);
-                                        return (
-                                        <div key={img.file.lastModified}>
-                                            <img src={img.imagePreviewUrl} className={classes.imgUploads}/>
-                                        </div>
-                                        )
-                                    })
-                                }
                             </div>
                         </FormControl>
                         <FormControl component="fieldset" className={classes.formControl}>
