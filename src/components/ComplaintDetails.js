@@ -6,6 +6,9 @@ import FormLabel from "@material-ui/core/FormLabel";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
+import MicIcon from "@material-ui/icons/Mic";
+import PauseCircleFilledIcon from "@material-ui/icons/PauseCircleFilled";
+import ReactMicRecord from "react-mic-record/es/components/ReactMicRecord";
 
 const styles = {
     pageTitle: {
@@ -40,14 +43,12 @@ const styles = {
     },
     images: {
         display: 'flex',
-        // flexDirection: 'horizontal',
         flexFlow: 'row wrap'
     },
     button: {
         height: 50,
         width: 50,
         marginLeft: 15,
-        marginBottom: 15,
         minWidth: '0 !important',
         lineHeight: 1,
         boxShadow: 'none',
@@ -73,12 +74,40 @@ const styles = {
         color: '#FFFFFF',
         fontWeight: 800,
         fontSize: 20
+    },
+    recordings: {
+        display: 'flex',
+        flexFlow: 'column wrap',
+    },
+    recordButton: {
+        height: 50,
+        width: 50,
+        marginLeft: 15,
+    },
+    record: {
+        display: 'flex',
+        flexFlow: 'row',
+        border: '1px solid #1A6DE0',
+        borderRadius: 6,
+        width: '95%'
+
+    },
+    recordingWave: {
+        height: 50,
+        width: '80%'
     }
 
 };
 
 
 class ComplaintDetails extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            record: false
+        }
+    }
 
     handleAddImage(e) {
         e.preventDefault();
@@ -93,9 +122,27 @@ class ComplaintDetails extends Component {
         reader.readAsDataURL(file)
     }
 
+    handleStartRecording(e) {
+        e.preventDefault();
+        this.setState({
+            record: true
+        });
+    }
+
+    handleStopRecording(e) {
+        e.preventDefault();
+        this.setState({
+            record: false
+        });
+    }
+
+    onData(recordedBlob) {
+        console.log('chunk of real-time data is: ', recordedBlob);
+    };
+
 
     render() {
-        const { classes, values, handleChange, removeImage} = this.props;
+        const { classes, values, handleChange, removeImage, addRecording, removeRecording} = this.props;
         return (
             <div className={classes.root}>
                 <div className={classes.pageTitle}>
@@ -144,12 +191,43 @@ class ComplaintDetails extends Component {
                         </FormControl>
                         <FormControl component="fieldset" className={classes.formControl}>
                             <FormLabel className={classes.formLabel} component="legend">הקלטה קולית - ספרו לנו מה קרה</FormLabel>
-                            <Button variant="contained" size="small" className={classes.button} >
-                                <label htmlFor='single'>
-                                    <AddAPhotoIcon/>
-                                </label>
-                                <input type="file" accept="audio/*;capture=microphone" capture/>
-                            </Button>
+                            <div className={classes.recordings}>
+                                {
+                                    values.recordings.map(recording => {
+                                        console.log(recording);
+                                        // return (
+                                        //     <div key={recording}>
+                                        //         <div className={classes.imageWrapper}>
+                                        //             <img src={img.imagePreviewUrl} className={classes.imgUploads}/>
+                                        //             <span className={classes.removeImage} onClick={(e) => removeImage(img)}>X</span>
+                                        //         </div>
+                                        //     </div>
+                                        // )
+                                    })
+                                }
+                                <div style={{ display: !this.state.record ? 'flex' : 'none' }}>
+                                    <Button variant="contained" size="small" className={classes.button}>
+                                        <label htmlFor='single'>
+                                            <MicIcon onClick={(e) => this.handleStartRecording(e)}/>
+                                        </label>
+                                    </Button>
+                                </div>
+                                <div className={classes.record} style={{ display: this.state.record ? 'flex' : 'none' }}>
+                                    <Button variant="contained" size="small" className={classes.button}>
+                                        <label htmlFor='single'>
+                                            <PauseCircleFilledIcon onClick={(e) => this.handleStopRecording(e)}/>
+                                        </label>
+                                    </Button>
+                                    <ReactMicRecord
+                                        record={this.state.record}
+                                        className={classes.recordingWave}
+                                        onData={this.onData}
+                                        onStop={addRecording}
+                                        strokeColor="#1A6DE0"
+                                        backgroundColor="#FFFFFF"
+                                    />
+                                </div>
+                            </div>
                         </FormControl>
                     </form>
                 </div>

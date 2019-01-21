@@ -49,7 +49,8 @@ class Complaint extends Component {
         instituteName: '',
         instituteAddress: '',
         whatHappened: '',
-        images: []
+        images: [],
+        recordings: []
     };
 
     nextStep = () => {
@@ -82,10 +83,23 @@ class Complaint extends Component {
         this.setState( {images: newImages} );
     };
 
+    addRecording = (recording) => {
+        console.log('addRecording', recording);
+        let { recordings } = this.state;
+        recordings.push(recording);
+        this.setState( {recordings: recordings} );
+    };
+
+    removeRecording = (recordingToRemove) => {
+        let { recordings } = this.state;
+        let newRecordings = recordings.filter(image => image !== recordingToRemove);
+        this.setState( {recordings: newRecordings} );
+    };
+
     renderStep() {
         const { step } = this.state;
-        const { instituteType, instituteName, instituteAddress, whatHappened, images } = this.state;
-        const values = { instituteType, instituteName, instituteAddress, whatHappened, images};
+        const { instituteType, instituteName, instituteAddress, whatHappened, images, recordings } = this.state;
+        const values = { instituteType, instituteName, instituteAddress, whatHappened, images, recordings};
 
         switch(step) {
             case 1:
@@ -107,6 +121,8 @@ class Complaint extends Component {
                         values={values}
                         addImage={this.addImage}
                         removeImage={this.removeImage}
+                        addRecording={this.addRecording}
+                        removeRecording={this.removeRecording}
                     />
                 );
                 break;
