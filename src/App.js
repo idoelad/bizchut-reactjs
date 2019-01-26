@@ -20,10 +20,6 @@ const styles = {
   root: {
     width: '100%',
     backgroundColor: '#0E4787'
-  },
-  topBar: {
-    backgroundColor: '#81B1E8',
-    height: '20px'
   }
 };
 
@@ -33,7 +29,6 @@ class App extends Component {
     return (
         <MuiThemeProvider theme={theme}>
           <div className={classes.root}>
-            <div className={classes.topBar}/>
             <Complaint/>
           </div>
         </MuiThemeProvider>
