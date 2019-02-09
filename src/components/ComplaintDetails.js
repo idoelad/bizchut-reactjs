@@ -11,33 +11,8 @@ import PauseCircleFilledIcon from "@material-ui/icons/PauseCircleFilled";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ReactMicRecord from "react-mic-record/es/components/ReactMicRecord";
 
-const styles = {
-    pageTitle: {
-        backgroundColor: '#0E4787',
-        height: 40,
-        color: '#FFFFFF',
-        textAlign: 'center',
-        paddingTop: 10,
-    },
-    formArea: {
-        paddingTop: 20,
-        backgroundColor: '#FFFFFF',
-    },
-    form: {
-        display: 'flex',
-        flexDirection: 'column',
-        paddingRight: 20,
-        marginRight: 10,
-    },
-    formLabel: {
-        paddingBottom: 10
-    },
-    formControl: {
-        paddingBottom: 30
-    },
-    textField: {
-        width: '95%',
-    },
+import {formStyles} from "../formStyles";
+const thisStyles = {
     fileInput: {
         width: 0,
         height: 0
@@ -109,9 +84,8 @@ const styles = {
         paddingTop: 11,
         width: 50
     }
-
-
 };
+const styles = {...formStyles, ...thisStyles};
 
 
 class ComplaintDetails extends Component {

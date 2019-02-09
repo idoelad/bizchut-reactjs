@@ -8,38 +8,9 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
 import Input from "@material-ui/core/Input";
 
-const styles = {
-    pageTitle: {
-        backgroundColor: '#0E4787',
-        height: 40,
-        color: '#FFFFFF',
-        textAlign: 'center',
-        paddingTop: 10,
-    },
-    formArea: {
-        paddingTop: 20,
-        backgroundColor: '#FFFFFF',
-    },
-    form: {
-        display: 'flex',
-        flexDirection: 'column',
-        paddingRight: 20,
-        marginRight: 10,
-    },
-    formLabel: {
-        paddingBottom: 10
-    },
-    formControl: {
-        paddingBottom: 30
-    },
-    formRadio: {
-        marginRight: -25
-    },
-    input: {
-      width: '95%'
-    }
-
-};
+import {formStyles} from "../formStyles";
+const thisStyles = {};
+const styles = {...formStyles, ...thisStyles};
 
 
 class ComplaintInstitute extends Component {
