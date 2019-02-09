@@ -69,7 +69,9 @@ class Complaint extends Component {
             });
             window.scrollTo(0, 0)
         } else {
-            this.props.goTo('home') //TODO send API and go to "Thank you" page
+            //TODO send API and go to "Thank you" page
+            alert('*** Thank you (Under construction...) ****');
+            this.props.goTo('home')
         }
 
     };
