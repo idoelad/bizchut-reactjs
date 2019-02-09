@@ -62,9 +62,16 @@ class Complaint extends Component {
 
     nextStep = () => {
         const { step } = this.state;
-        this.setState({
-            step: Math.min(3, step + 1)
-        });
+        const newStep = step+1;
+        if (newStep <= 3) {
+            this.setState({
+                step: Math.min(3, step + 1)
+            });
+            window.scrollTo(0, 0)
+        } else {
+            this.props.goTo('home') //TODO send API and go to "Thank you" page
+        }
+
     };
 
     prevStep = () => {
