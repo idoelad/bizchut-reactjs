@@ -13,6 +13,7 @@ const thisStyles = {
         backgroundColor: '#0E4787',
         paddingBottom: 20,
         paddingRight: 30,
+        paddingLeft: 10,
         color: '#FFFFFF',
         textAlign: 'right',
         paddingTop: 10,

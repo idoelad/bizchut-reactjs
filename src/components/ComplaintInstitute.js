@@ -18,7 +18,7 @@ class ComplaintInstitute extends Component {
     render() {
         const { classes, values, handleChange } = this.props;
         return (
-            <div className={classes.root}>
+            <div>
                 <div className={classes.pageTitle}>
                     <Typography variant="h5" color="inherit">
                         פרטי המוסד בו התרחש האירוע
@@ -35,9 +35,9 @@ class ComplaintInstitute extends Component {
                                 onChange={handleChange('instituteType')}
                                 defaultValue={values.instituteType}
                             >
-                                <FormControlLabel value="מוסד" control={<Radio />} label="מוסד" />
-                                <FormControlLabel value="בית חולים פסיכיאטרי" control={<Radio />} label="בית חולים פסיכיאטרי" />
-                                <FormControlLabel value="הוסטל" control={<Radio />} label="הוסטל" />
+                                <FormControlLabel className={classes.radioFix} value="מוסד" control={<Radio />} label="מוסד" />
+                                <FormControlLabel className={classes.radioFix} value="בית חולים פסיכיאטרי" control={<Radio />} label="בית חולים פסיכיאטרי" />
+                                <FormControlLabel className={classes.radioFix} value="הוסטל" control={<Radio />} label="הוסטל" />
                             </RadioGroup>
                         </FormControl>
                         <FormControl component="fieldset" className={classes.formControl}>

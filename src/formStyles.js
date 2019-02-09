@@ -22,6 +22,9 @@ export const formStyles = {
     formControl: {
         paddingBottom: 30
     },
+    radioFix: {
+        maxWidth: '80%'
+    },
     formRadio: {
         marginRight: -25
     },
