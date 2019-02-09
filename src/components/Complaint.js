@@ -9,6 +9,7 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import Divider from "@material-ui/core/Divider";
 import Fab from "@material-ui/core/Fab";
 import ComplaintDetails from "./ComplaintDetails";
+import ComplaintPersonalDetails from "./ComplaintPersonalDetails";
 
 const styles = {
     complaintAppBar: {
@@ -44,13 +45,19 @@ const styles = {
 
 class Complaint extends Component {
     state = {
-        step: 2,
-        instituteType: null,
-        instituteName: '',
-        instituteAddress: '',
-        whatHappened: '',
-        images: [],
-        recordings: []
+        step: 3,
+        values: {
+            instituteType: null,
+            instituteName: '',
+            instituteAddress: '',
+            whatHappened: '',
+            images: [],
+            recordings: [],
+            name: '',
+            phone: '',
+            email: '',
+            relation: null
+        }
     };
 
     nextStep = () => {
@@ -67,39 +74,46 @@ class Complaint extends Component {
         });
     };
 
+    updateValues = (key, newValue) => {
+        let { values } = this.state;
+        values[key] = newValue;
+        this.setState({
+            values: values
+        });
+    };
+
     handleChange = input => e => {
-        this.setState({ [input]: e.target.value });
+        this.updateValues(input, e.target.value);
     };
 
     addImage = (image) => {
-        let { images } = this.state;
+        let { images } = this.state.values;
         images.push(image);
-        this.setState( {images: images} );
+        this.updateValues('images', images);
     };
 
     removeImage = (imageToRemove) => {
-        let { images } = this.state;
+        let { images } = this.state.values;
         let newImages = images.filter(image => image !== imageToRemove);
-        this.setState( {images: newImages} );
+        this.updateValues('images', newImages);
     };
 
     addRecording = (recording) => {
-        console.log('addRecording', recording);
-        let { recordings } = this.state;
+        let { recordings } = this.state.values;
         recordings.push(recording);
-        this.setState( {recordings: recordings} );
+        this.updateValues('recordings', recordings);
     };
 
     removeRecording = (recordingToRemove) => {
-        let { recordings } = this.state;
+        let { recordings } = this.state.values;
         let newRecordings = recordings.filter(image => image !== recordingToRemove);
-        this.setState( {recordings: newRecordings} );
+        this.updateValues('recordings', newRecordings);
+
     };
 
     renderStep() {
         const { step } = this.state;
-        const { instituteType, instituteName, instituteAddress, whatHappened, images, recordings } = this.state;
-        const values = { instituteType, instituteName, instituteAddress, whatHappened, images, recordings};
+        let values = this.state.values;
 
         switch(step) {
             case 1:
@@ -123,6 +137,16 @@ class Complaint extends Component {
                         removeImage={this.removeImage}
                         addRecording={this.addRecording}
                         removeRecording={this.removeRecording}
+                    />
+                );
+                break;
+            case 3:
+                this.nextText = 'שליחת תלונה אנונימית';
+                this.formPart = (
+                    <ComplaintPersonalDetails
+                        nextStep={this.nextStep}
+                        handleChange={this.handleChange}
+                        values={values}
                     />
                 );
                 break;
