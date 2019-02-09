@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Alef');
-
+@font-face {
+  font-family: 'alef';
+  src: url('https://fonts.googleapis.com/css?family=Alef');
+}
 .App {
   text-align: center;
 }

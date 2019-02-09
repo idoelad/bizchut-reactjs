@@ -69,9 +69,15 @@ class Complaint extends Component {
 
     prevStep = () => {
         const { step } = this.state;
-        this.setState({
-            step: Math.max(1, step - 1)
-        });
+        const newStep = step - 1;
+        if (newStep >= 1) {
+            this.setState({
+                step: newStep
+            });
+        } else {
+            this.props.goTo('home');
+        }
+
     };
 
     updateValues = (key, newValue) => {
