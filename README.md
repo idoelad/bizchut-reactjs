@@ -1,3 +1,13 @@
+# Spec
+
+InVision link with all screens can be found [here](https://projects.invisionapp.com/prototype/Bizchut-cjqwe9viv005yke01858axgiv)
+
+Current build demo can be found [here](https://bizchut.appspot.com/). I will try to update the demo with any progress.
+
+For any question please email Ido: idoelad@gmail.com
+
+# Development 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
