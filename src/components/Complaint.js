@@ -45,7 +45,7 @@ const styles = {
 
 class Complaint extends Component {
     state = {
-        step: 3,
+        step: 1,
         values: {
             instituteType: null,
             instituteName: '',
