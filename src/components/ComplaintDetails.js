@@ -97,17 +97,18 @@ class ComplaintDetails extends Component {
         };
     }
 
-    handleAddImage(e) {
+    handleAddImages(e) {
         e.preventDefault();
-        let reader = new FileReader();
-        let file = e.target.files[0];
-        reader.onloadend = () => {
-            this.props.addImage({
-                file: file,
-                imagePreviewUrl: reader.result
-            });
-        };
-        reader.readAsDataURL(file)
+        Array.from(e.target.files).forEach(file => {
+            let reader = new FileReader();
+            reader.onloadend = () => {
+                this.props.addImage({
+                    file: file,
+                    imagePreviewUrl: reader.result
+                });
+            };
+            reader.readAsDataURL(file)
+        });
     }
 
     handleStartRecording(e) {
@@ -178,7 +179,13 @@ class ComplaintDetails extends Component {
                                     <label htmlFor='single'>
                                         <AddAPhotoIcon/>
                                     </label>
-                                    <input type="file" id='single' onChange={(e)=>this.handleAddImage(e)}/>
+                                    <input
+                                        type="file"
+                                        multiple
+                                        accept="image/x-png,image/gif,image/jpeg"
+                                        id='single'
+                                        onChange={(e)=>this.handleAddImages(e)}
+                                    />
                                 </Button>
                             </div>
                         </FormControl>

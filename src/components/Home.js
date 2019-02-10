@@ -91,7 +91,7 @@ const styles = {
         color: '#FFFFFF',
         paddingRight: 25,
         fontSize: 24,
-        fontFamily: 'alef'
+        fontFamily: 'Assistant'
     },
     drawerItems: {
         paddingBottom: 10,
