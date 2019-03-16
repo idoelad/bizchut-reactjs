@@ -11,7 +11,7 @@ import PauseCircleFilledIcon from "@material-ui/icons/PauseCircleFilled";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ReactMicRecord from "react-mic-record/es/components/ReactMicRecord";
 
-import {formStyles} from "../formStyles";
+import {formStyles} from "../../formStyles";
 const thisStyles = {
     fileInput: {
         width: 0,

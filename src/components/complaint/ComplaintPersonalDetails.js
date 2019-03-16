@@ -7,7 +7,7 @@ import Input from "@material-ui/core/Input";
 import Select from "@material-ui/core/Select";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 
-import {formStyles} from "../formStyles";
+import {formStyles} from "../../formStyles";
 const thisStyles = {
     pageTitle: {
         backgroundColor: '#0E4787',

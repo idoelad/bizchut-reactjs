@@ -5,7 +5,8 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import Home from "./components/Home";
-import Complaint from "./components/Complaint";
+import Complaint from "./components/complaint/Complaint";
+import Report from "./components/report/Report";
 
 const theme = createMuiTheme({
   typography: {
@@ -50,6 +51,12 @@ class App extends Component {
       case 'complaint':
         return (
             <Complaint
+                goTo={this.goTo}
+            />
+        );
+      case 'report':
+        return (
+            <Report
                 goTo={this.goTo}
             />
         );

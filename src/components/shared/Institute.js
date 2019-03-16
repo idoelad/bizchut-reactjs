@@ -8,12 +8,12 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
 import Input from "@material-ui/core/Input";
 
-import {formStyles} from "../formStyles";
+import {formStyles} from "../../formStyles";
 const thisStyles = {};
 const styles = {...formStyles, ...thisStyles};
 
 
-class ComplaintInstitute extends Component {
+class Institute extends Component {
 
     render() {
         const { classes, values, handleChange } = this.props;
@@ -21,7 +21,7 @@ class ComplaintInstitute extends Component {
             <div>
                 <div className={classes.pageTitle}>
                     <Typography variant="h5" color="inherit">
-                        פרטי המוסד בו התרחש האירוע
+                        פרטי המוסד
                     </Typography>
                 </div>
                 <div className={classes.formArea}>
@@ -35,9 +35,9 @@ class ComplaintInstitute extends Component {
                                 onChange={handleChange('instituteType')}
                                 defaultValue={values.instituteType}
                             >
-                                <FormControlLabel className={classes.radioFix} value="מוסד" control={<Radio />} label="מוסד" />
-                                <FormControlLabel className={classes.radioFix} value="בית חולים פסיכיאטרי" control={<Radio />} label="בית חולים פסיכיאטרי" />
-                                <FormControlLabel className={classes.radioFix} value="הוסטל" control={<Radio />} label="הוסטל" />
+                                <FormControlLabel className={classes.radioFix} value="institute" control={<Radio />} label="מוסד" />
+                                <FormControlLabel className={classes.radioFix} value="psychical_hospital" control={<Radio />} label="בית חולים פסיכיאטרי" />
+                                <FormControlLabel className={classes.radioFix} value="hostel" control={<Radio />} label="הוסטל" />
                             </RadioGroup>
                         </FormControl>
                         <FormControl component="fieldset" className={classes.formControl}>
@@ -71,4 +71,4 @@ class ComplaintInstitute extends Component {
     }
 }
 
-export default withStyles(styles)(ComplaintInstitute);
+export default withStyles(styles)(Institute);

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import ComplaintInstitute from "./ComplaintInstitute";
 import AppBar from "@material-ui/core/AppBar";
 import withStyles from "@material-ui/core/styles/withStyles";
 import {Typography} from "@material-ui/core";
@@ -8,8 +7,9 @@ import IconButton from "@material-ui/core/IconButton";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import Divider from "@material-ui/core/Divider";
 import Fab from "@material-ui/core/Fab";
-import ComplaintDetails from "./ComplaintDetails";
-import ComplaintPersonalDetails from "./ComplaintPersonalDetails";
+import Institute from "../shared/Institute";
+import ReportSubjects from "./ReportSubjects";
+import ReportInstitutePhysicalConditions from "./institute-types/institute/ReportInstitutePhysicalConditions";
 
 const styles = {
     complaintAppBar: {
@@ -22,7 +22,7 @@ const styles = {
         paddingRight: 0
     },
     lowerToolbar: {
-        height: 30
+        height: 10
     },
     toolbarDivider: {
         backgroundColor: '#819DBD',
@@ -43,37 +43,22 @@ const styles = {
     }
 };
 
-class Complaint extends Component {
+class Report extends Component {
     state = {
-        step: 1,
+        step: 'institute',
         values: {
             instituteType: null,
             instituteName: '',
             instituteAddress: '',
-            whatHappened: '',
-            images: [],
-            recordings: [],
-            name: '',
-            phone: '',
-            email: '',
-            relation: null
+            physicalConditions: {}
         }
     };
 
-    nextStep = () => {
-        const { step } = this.state;
-        const newStep = step+1;
-        if (newStep <= 3) {
-            this.setState({
-                step: Math.min(3, step + 1)
-            });
-            window.scrollTo(0, 0)
-        } else {
-            //TODO send API and go to "Thank you" page
-            alert('*** Thank you (Under construction...) ****');
-            this.props.goTo('home')
-        }
-
+    goToStep = (step) => {
+        this.setState({
+            step: step
+        });
+        window.scrollTo(0, 0)
     };
 
     prevStep = () => {
@@ -86,44 +71,50 @@ class Complaint extends Component {
         } else {
             this.props.goTo('home');
         }
-
     };
 
-    updateValues = (key, newValue) => {
+    updateValues = (path, newValue) => {
         let { values } = this.state;
-        values[key] = newValue;
+        Report.updateObject(values, path, newValue);
         this.setState({
             values: values
         });
     };
 
-    handleChange = input => e => {
-        this.updateValues(input, e.target.value);
+    static updateObject(object, path, newValue){
+        let stack = path.split('.');
+        let cur;
+        while(stack.length > 1) {
+            cur = stack.shift();
+            if (!object[cur]) {
+                object[cur] = {}
+            }
+            object = object[cur];
+        }
+        object[stack.shift()] = newValue;
+    }
+
+    getValue = (path) => {
+        let { values } = this.state;
+        return Report.getObjectValue(values, path);
     };
 
-    addImage = (image) => {
-        let { images } = this.state.values;
-        images.push(image);
-        this.updateValues('images', images);
-    };
+    static getObjectValue(object, path){
+        let stack = path.split('.');
+        let cur;
+        while(stack.length > 0) {
+            cur = stack.shift();
+            if (typeof object[cur] === 'undefined') {
+                return null;
+            }
+            object = object[cur];
+        }
+        return object;
+    }
 
-    removeImage = (imageToRemove) => {
-        let { images } = this.state.values;
-        let newImages = images.filter(image => image !== imageToRemove);
-        this.updateValues('images', newImages);
-    };
-
-    addRecording = (recording) => {
-        let { recordings } = this.state.values;
-        recordings.push(recording);
-        this.updateValues('recordings', recordings);
-    };
-
-    removeRecording = (recordingToRemove) => {
-        let { recordings } = this.state.values;
-        let newRecordings = recordings.filter(image => image !== recordingToRemove);
-        this.updateValues('recordings', newRecordings);
-
+    handleChange = (path) => e => {
+        let value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+        this.updateValues(path, value);
     };
 
     renderStep() {
@@ -131,37 +122,34 @@ class Complaint extends Component {
         let values = this.state.values;
 
         switch(step) {
-            case 1:
-                this.nextText = 'שמור והמשך לפרטי התלונה';
+            case 'institute':
+                this.nextText = 'המשך לשאלון';
+                this.nextStep = 'reportSubjects';
                 this.formPart = (
-                    <ComplaintInstitute
-                        nextStep={this.nextStep}
+                    <Institute
                         handleChange={this.handleChange}
                         values={values}
                     />
                 );
                 break;
-            case 2:
-                this.nextText = 'שמור והמשך לפרטים אישיים';
+            case 'reportSubjects':
+                this.nextText = 'שמור ושלח דיווח';
+                this.nextStep = ''; //TODO
                 this.formPart = (
-                    <ComplaintDetails
-                        nextStep={this.nextStep}
+                    <ReportSubjects
                         handleChange={this.handleChange}
                         values={values}
-                        addImage={this.addImage}
-                        removeImage={this.removeImage}
-                        addRecording={this.addRecording}
-                        removeRecording={this.removeRecording}
+                        goToStep={this.goToStep}
                     />
                 );
                 break;
-            case 3:
-                this.nextText = 'שליחת תלונה אנונימית';
+            case 'reportInstitutePhysicalConditions':
+                this.nextText = 'שמור והמשך';
+                this.nextStep = 'reportInstituteEmployment'; //TODO
                 this.formPart = (
-                    <ComplaintPersonalDetails
-                        nextStep={this.nextStep}
+                    <ReportInstitutePhysicalConditions
                         handleChange={this.handleChange}
-                        values={values}
+                        getValue={this.getValue}
                     />
                 );
                 break;
@@ -181,7 +169,7 @@ class Complaint extends Component {
                             <ChevronRightIcon />
                         </IconButton>
                         <Typography variant="h6" color="inherit">
-                            הגשת תלונה
+                            דיווח על מוסד
                         </Typography>
                     </Toolbar>
                     <div className={classes.lowerToolbar}>
@@ -190,7 +178,7 @@ class Complaint extends Component {
                 </AppBar>
                 {this.formPart}
                 <div className={classes.footerBar}>
-                    <Fab variant="extended" aria-label="שמור והמשך לפרטי התלונה" className={classes.footerButton} onClick={this.nextStep}>
+                    <Fab variant="extended" className={classes.footerButton} onClick={(e) => {this.goToStep(this.nextStep)}}>
                         {this.nextText}
                     </Fab>
                 </div>
@@ -199,4 +187,4 @@ class Complaint extends Component {
     }
 }
 
-export default withStyles(styles)(Complaint);
+export default withStyles(styles)(Report);

@@ -2,6 +2,8 @@
 
 InVision link with all screens can be found [here](https://projects.invisionapp.com/prototype/Bizchut-cjqwe9viv005yke01858axgiv)
 
+Copy and content can be found [here](https://docs.google.com/document/d/1wxVKJfHTOTHOmvv9yhhv84bU5DrstK065Kqee6pfDro/edit?usp=sharing)
+
 Current build demo can be found [here](https://bizchut.appspot.com/). I will try to update the demo with any progress.
 
 For any question please email Ido: idoelad@gmail.com

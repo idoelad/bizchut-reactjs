@@ -168,7 +168,7 @@ class Home extends Component {
                         <Fab variant="extended" aria-label="אני רוצה להגיש תלונה פרטנית" className={classes.buttonComplaint} onClick={(e) => {this.props.goTo('complaint')}}>
                             אני רוצה להגיש תלונה פרטנית
                         </Fab>
-                        <Fab variant="extended" aria-label="אני רוצה לדווח על מוסד בעייתי" className={classes.buttonInstitute} onClick={console.log('')}>
+                        <Fab variant="extended" aria-label="אני רוצה לדווח על מוסד בעייתי" className={classes.buttonInstitute} onClick={(e) => {this.props.goTo('report')}}>
                             אני רוצה לדווח על מוסד בעייתי
                         </Fab>
                     </div>
