@@ -10,6 +10,10 @@ import Fab from "@material-ui/core/Fab";
 import Institute from "../shared/Institute";
 import ReportSubjects from "./ReportSubjects";
 import ReportInstitutePhysicalConditions from "./institute-types/institute/ReportInstitutePhysicalConditions";
+import ReportOccupationAndDailyRoutine from "./institute-types/institute/ReportOccupationAndDailyRoutine";
+
+
+
 
 const styles = {
     complaintAppBar: {
@@ -50,8 +54,9 @@ class Report extends Component {
             instituteType: null,
             instituteName: '',
             instituteAddress: '',
-            physicalConditions: {}
-        }
+            physicalConditions: {},
+            occupationAndDailyRoutine: {}       
+         }
     };
 
     goToStep = (step) => {
@@ -153,6 +158,18 @@ class Report extends Component {
                     />
                 );
                 break;
+                
+                case 'reportOccupationAndDailyRoutine':
+                this.nexftText = 'שמור והמשך';
+                this.nextStep = 'reportOccupationAndDailyRoutine'; //TODO
+                this.formPart = (
+                    <ReportOccupationAndDailyRoutine
+                        handleChange={this.handleChange}
+                        getValue={this.getValue}
+                    />
+                );
+                break;
+            
             default:
                 break;
         }
