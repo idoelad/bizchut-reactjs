@@ -26,8 +26,16 @@ class ReportSubjects extends Component {
                 title: 'תנאים פיזיים בכל ביתן/אגף',
             },
             {
-                step: 'reportInstituteEmployment',
+                step: 'reportOccupationAndDailyRoutine',
                 title: 'תעסוקה וסדר יום',
+            },
+            {
+                step: 'reportRelationsWithFamily',
+                title: 'קשר עם המשפחה',
+            },
+            {
+                step: 'reportRelationsWithCommunity',
+                title: 'קשר עם הקהילה',
             },
         ]
     };
