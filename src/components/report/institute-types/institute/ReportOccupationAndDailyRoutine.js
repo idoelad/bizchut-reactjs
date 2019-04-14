@@ -22,12 +22,28 @@ const thisStyles = {
 const styles = {...formStyles, ...thisStyles};
 
 class ReportOccupationAndDailyRoutine extends Component{
+        constructor (props) {
+            super(props);
+            this.state = {OtherClicked: false};
+            this.handleOtherClick = this.handleOtherClick.bind(this);
+            this.handleDefaultClick = this.handleDefaultClick.bind(this);
+        }
 
+        handleDefaultClick() {
+            console.log("jjjj");
+            this.setState({OtherClicked: false})
+        }
+        handleOtherClick () {
+                 console.log("hello");
+                 this.setState({OtherClicked: true})
+            }
 
+       
+    
     render () {
         const subject = 'OccupationAndDailyRoutine';
         const { classes, getValue, handleChange } = this.props;
-        let showInput = false;
+        
         
         
         return (
@@ -107,17 +123,22 @@ class ReportOccupationAndDailyRoutine extends Component{
                                 onChange={handleChange(subject+'.HangoutActivities')}
                                 defaultValue={getValue(subject+'.HangoutActivities')}
                             >
-                                <FormControlLabel className={classes.radioFix} value="Courses" control={<Radio />} label="חוגים" />
-                                <FormControlLabel className={classes.radioFix} value="Vacation" control={<Radio />} label="נופש" />
-                                <FormControlLabel className={classes.radioFix} value="" control={<Radio/>} label="אחר"
+                                <FormControlLabel className={classes.radioFix} value="Courses" control={<Radio />} onClick={this.handleDefaultClick} label="חוגים" />
+                                <FormControlLabel className={classes.radioFix} value="Vacation" control={<Radio />} onClick={this.handleDefaultClick} label="נופש" />
+                                <FormControlLabel className={classes.radioFix} value="other" control={<Radio />} onClick={this.handleOtherClick} label="אחר" />
+                                <Input
+                                disabled={(!this.state.OtherClicked)}
+                                className={classes.Input}
+                                inputProps={{
+                                    'aria-label': 'אחר',
+                                }}
+                                onChange={handleChange(subject+'.HangoutActivities')}
+                                defaultValue={getValue(subject+'.HangoutActivities')}
                                 />
-                                 <Input className={classes.radioFix} 
-                                        placeholder="קבוצת תמיכה שבועית"
-                                        onChange={handleChange(subject+'.OtherHangout')}
-                                        defaultValue={getValue(subject+'.OtherHangout')}
-                                    /> 
-                            
+                                
+                                                              
                             </RadioGroup>
+                           
                         </FormControl>
 
                     </form>
