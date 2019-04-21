@@ -9,9 +9,7 @@ import Divider from "@material-ui/core/Divider";
 import Fab from "@material-ui/core/Fab";
 import Institute from "../shared/Institute";
 import ReportSubjects from "./ReportSubjects";
-import ReportInstitutePhysicalConditions from "./institute-types/institute/ReportInstitutePhysicalConditions";
-import ReportOccupationAndDailyRoutine from "./institute-types/institute/ReportOccupationAndDailyRoutine";
-
+import InstituteRightsStatus from "./institute-types/institute/InstituteRightsStatus"
 
 
 
@@ -53,11 +51,293 @@ class Report extends Component {
         values: {
             instituteType: null,
             instituteName: '',
-            instituteAddress: '',
-            physicalConditions: {},
-            occupationAndDailyRoutine: {}       
+            instituteAddress: '',  
+            CategoryDetails: 
+            {
+                key: '',
+                CategoryName: '',
+                questionsAndAnswers: [
+            {
+                label: '',
+                options: [''], 
+                type: '',
+            }]
          }
-    };
+        }
+    }
+    
+
+    CategoriesDetails = [
+        {
+            key: 'physicalConditions',
+            CategoryName: 'תנאים פיזיים בכל ביתן/אגף',
+            questionsAndAnswers: [
+        {
+            label: 'כמה דיירים חיים בחדר?',
+            options: [1, 2, 3, 'יותר'], 
+            type: 'radio',
+        }, 
+        {
+            label: 'אילו פריטים קיימים באגף?',
+            options: ['ספרים','מחשב','טלוויזיה','משחקים','חומרי יצירה','ספות ישיבה', 'נגן מוזיקה'],
+            type: 'Checkbox',
+        },
+        {
+            label: 'האם יש באגף מטבח שמאפשר הכנת אוכל במקום?',
+            options: ['כן', 'לא'],
+            type: 'radio'
+        },
+        {
+            label: 'האם הדיירים יכולים להיכנס לחדר שלהם בכל שעות היום?', 
+            options: ['כן', 'לא'],
+            type: 'radio'
+        },
+        {
+            label: 'האם הריהוט שלם ותקין?', 
+            options: ['כן', 'לא'],
+            type: 'radio'
+        },
+        {
+            label: 'כמה דיירים חולקים מקלחת ושירותים?', 
+            options: ['1-2', '3-5', '6 ומעלה'] ,
+            type: 'radio'
+        }
+        ]
+        }, 
+        {
+            key: 'OccupationAndDailyRoutine',
+            CategoryName: 'תעסוקה וסדר יום',
+            questionsAndAnswers: [
+        {
+            label: 'האם הדיירים יוצאים לתעסוקה מחוץ למוסד?',
+            options: ['כן', 'לא'], 
+            type: 'radio',
+        }, 
+        {
+            label: 'האם הדיירים מקבלים תשלום על עבודתם?',
+            options: ['כן', 'לא'], 
+            type: 'radio',
+        },
+        {
+            label: 'כמה פעמים בשבוע מתקיימת פעילות תרבות ופנאי באגף',
+            options: ['פעם אחת', 'פעמיים', 'שלוש פעמים', 'יותר'],
+            type: 'radio'
+        },
+        {
+            label: 'האם הדיירים יוצאים לבילוי מחוץ למוסד?', 
+            options: ['כן', 'לא'],
+            type: 'radio'
+        },
+        {
+            label: 'אם כן, לאיזה סוג של פעילות?', 
+            options: ['חוגים', 'נופש', 'אחר'],
+            type: 'radio'
+        }]
+        }, 
+        {
+            key: 'CommunicationWithFamily',
+            CategoryName: 'קשר עם המשפחה',
+            questionsAndAnswers: [
+        {
+            label: 'האם אפשר לבקר את הדיירים בכל זמן?',
+            options: ['כן', 'לא'], 
+            type: 'radio',
+        }, 
+        {
+            label: 'האם בני משפחה יכולים להיכנס לחדר?',
+            options: ['כן', 'לא'], 
+            type: 'radio',
+        },
+        {
+            label: 'באיזו תדירות הדיירים יוצאים הביתה?',
+            options: ['כל שבוע', 'פעם בשבועיים', 'פעם בחודש', 'אחר'],
+            type: 'radio'
+        }]
+        }, 
+        {
+            key: 'CommunityRelations',
+            CategoryName: 'קשר עם הקהילה',
+            questionsAndAnswers: [
+        {
+            label: 'האם הדיירים משתמשים בשירותים הקהילתיים?',
+            options: ['כן', 'לא'], 
+            type: 'radio',
+        }, 
+        {
+            label: 'אם כן, באילו שירותים?',
+            options: ['מתנ"ס', 'קופת חולים', 'מכולת', 'אחר'], 
+            type: 'radio',
+        },
+        {
+            label: 'האם לדיירים יש קשר עם התושבים בקהילה?',
+            options: ['בכלל לא', 'מעט', 'הרבה'],
+            type: 'radio'
+        }]
+        },
+        {
+            key: 'SleepingHoures',
+            CategoryName: 'שעות שינה',
+            questionsAndAnswers: [
+            {
+            label: 'מתי הולכים לישון במוסד?',
+            options: ['8', '9', '10', 'אין שעה קבועה'], 
+            type: 'radio',
+            }, 
+            {
+            label: 'האם יש כיבוי אורות במוסד?',
+            options: ['כן', 'לא'], 
+            type: 'radio',
+            },
+            {
+            label: 'האם מחייבים את הדיירים לנוח אחר הצהריים?',
+            options: ['כן', 'לא'],
+            type: 'radio'
+            }]
+        },
+        {
+            key: 'Independence',
+            CategoryName: 'עצמאות',
+            questionsAndAnswers: [
+            {
+            label: 'האם הדיירים רשאים לקבל אוכל גם בין ארוחות?',
+            options: ['כן', 'לא'], 
+            type: 'radio',
+            }, 
+            {
+            label: 'האם הדיירים יכולים להיכנס למטבח ולקחת אוכל בכוחות עצמם כשהם רעבים?',
+            options: ['כן', 'לא'], 
+            type: 'radio',
+            },
+            {
+            label: 'האם קונים בגדים חדשים לכל דייר על פי טעמו או שקונים במרוכז לכל הדיירים?',
+            options: ['במרוכז', 'לכל אחד בנפרד'],
+            type: 'radio'
+            }]
+        },
+        {
+            key: 'Crew',
+            CategoryName: 'התנהלות הצוות',
+            questionsAndAnswers: [
+        {
+            label: 'מה היחס של הצוות לדיירים?',
+            options: ['מצוין', 'טוב', 'סביר', 'לא טוב', 'רע'], 
+            type: 'radio',
+        }, 
+        {
+            label: 'האם אנשי הצוות משתמשים באלימות מילולית?',
+            options: ['בכלל לא', 'מעט', 'הרבה'], 
+            type: 'radio',
+        },
+        {
+            label: 'האם קיימת אלימות פיזית במוסד?',
+            options: ['בכלל לא', 'מעט', 'הרבה'], 
+            type: 'radio',
+        },
+        {
+            label: 'האם אנשי הצוות מענישים דיירים?',
+            options: ['בכלל לא', 'מעט', 'הרבה'], 
+            type: 'radio'
+        },
+        {
+            label: 'אם כן, מהי צורת הענישה המקובלת במוסד??', 
+            type: 'input'
+        },
+        {
+            label: 'האם הדיירים זוכים ליחס נעים ולהקשבה?',
+            options: ['בכלל לא', 'מעט', 'הרבה'], 
+            type: 'radio'
+        }
+        ]
+        },
+        {
+            key: 'PersonalBelongings',
+            CategoryName: 'חפצים אישיים',
+            questionsAndAnswers: [
+        {
+            label: 'האם לדיירים יש בגדים אישיים?',
+            options: ['כן', 'לא'], 
+            type: 'radio',
+        }, 
+        {
+            label: 'האם לדיירים יש ארון אישי לשים בו חפצים?',
+            options: ['כן', 'לא'], 
+            type: 'radio',
+        },
+        {
+            label: 'האם לדיירים יש מוצרי הגיינה אישיים (כמו שמפו או מברשת שיניים)?',
+            options: ['כן', 'לא'], 
+            type: 'radio',
+        },
+        {
+            label: 'האם לדיירים יש מגבת אישית?',
+            options: ['כן', 'לא'], 
+            type: 'radio'
+        }
+        ]   
+        },
+        {
+            key: 'MovementRestrictions',
+            CategoryName: 'הגבלת תנועה',
+            questionsAndAnswers: [
+        {
+            label: 'האם יש במוסד דלתות ללא ידיות?',
+            options: ['כלל לא', 'מעט', 'הרבה'], 
+            type: 'radio',
+        }, 
+        {
+            label: 'האם הביתן או האגף נעולים?',
+            options: ['כן', 'לא'], 
+            type: 'radio',
+        },
+        {
+            label: 'האם חדרי השינה נעולים במשך היום?',
+            options: ['כן', 'לא'], 
+            type: 'radio',
+        },
+        {
+            label: 'האם משתמשים באמצעי הגבלה וכבילה (כסאות הגבלה, קשירה למיטה, נעילה בחדר)?',
+            options: ['כלל לא', 'מעט', 'הרבה'], 
+            type: 'radio'
+        }
+        ]   
+        },
+        {
+            key: 'Inspection',
+            CategoryName: 'פיקוח',
+            questionsAndAnswers: [
+        {
+            label: 'האם כבר הגשת בעבר תלונות על המוסד?',
+            options: ['לא', 'כן'], 
+            type: 'radio',
+        }, 
+        {
+            label: 'אם כן,תוך כמה זמן התלונות או הבקשות מטופלות?',
+            options: ['יום', 'כמה ימים', 'שבוע', 'מספר שבועות', 'לא מטופלות'], 
+            type: 'radio',
+        },
+        {
+            label: 'האם יש לך קשר ישיר עם הגורם המפקח על המוסד?',
+            options: ['כן', 'לא'], 
+            type: 'radio',
+        },
+        {
+            label: 'האם הוא זמין בעת הצורך?',
+            options: ['כלל לא', 'מעט', 'הרבה'], 
+            type: 'radio'
+        }
+        ]   
+        },
+        {
+            key: 'GeneralNotes',
+            CategoryName: 'התרשמות כללית והערות',
+            questionsAndAnswers: [
+        {
+            type: 'input',
+        }
+    
+        ]
+        }
+        ];
 
     goToStep = (step) => {
         this.setState({
@@ -139,37 +419,29 @@ class Report extends Component {
                 break;
             case 'reportSubjects':
                 this.nextText = 'שמור ושלח דיווח';
-                this.nextStep = ''; //TODO
+                this.nextStep = 'InstituteRightsStatus';
                 this.formPart = (
                     <ReportSubjects
+                        CategoriesDetails={this.CategoriesDetails}
                         handleChange={this.handleChange}
                         values={values}
                         goToStep={this.goToStep}
                     />
                 );
                 break;
-            case 'reportInstitutePhysicalConditions':
-                this.nextText = 'שמור והמשך';
-                this.nextStep = 'reportInstituteEmployment'; //TODO
+            case 'InstituteRightsStatus':
+                this.nextText = 'שמור ושלח דיווח';
+                this.nextStep = ''; //TODO
                 this.formPart = (
-                    <ReportInstitutePhysicalConditions
+                    <InstituteRightsStatus
                         handleChange={this.handleChange}
-                        getValue={this.getValue}
-                    />
-                );
-                break;
+                        values={values}
+                        goToStep={this.goToStep}
                 
-                case 'reportOccupationAndDailyRoutine':
-                this.nexftText = 'שמור והמשך';
-                this.nextStep = 'reportOccupationAndDailyRoutine'; //TODO
-                this.formPart = (
-                    <ReportOccupationAndDailyRoutine
-                        handleChange={this.handleChange}
-                        getValue={this.getValue}
                     />
                 );
                 break;
-            
+                           
             default:
                 break;
         }
