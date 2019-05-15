@@ -35,37 +35,45 @@ const thisStyle = {
 const styles = {...formStyles, ...thisStyle};
 
 class InstituteRightsStatus extends Component {
-    
+   
     render() {
-        const { classes, getValue, handleChange } = this.props;
-        const subject = 'instituteRightsStatus';
-        console.log(this.props.values.CategoryDetails.CategoryName);
-           
+        const { classes , values, handleClick, handleUserChoise  } = this.props;
+        const subject = 'questionsAndAnswers';
+    
+        console.log(this.props);
+          
         return (
             <div className={classes.root}>
                 <div className={classes.pageTitle}>
                     <Typography variant="h5" color="inherit">
-                            {this.props.values.CategoryDetails.CategoryName}               
+                            {values.categoryDetails.CategoryName}              
                     </Typography>
                 </div>
+
             <List className={classes.root}>
                     {
-                        this.props.values.CategoryDetails.questionsAndAnswers.map((el, index) =>
+                        values.categoryDetails.questionsAndAnswers.map((QA, index) =>
                             <React.Fragment key={index}>
                                 <ListItem className={classes.subjectItem} name="ChosenCategory">
                                     <ListItemText
                                         primary={
                                             <form className={classes.form}>
-                                            <FormControl component="fieldset" className={classes.formControl}>
-                                                <FormLabel className={classes.formLabel} component="legend">{el.label}</FormLabel>
+                                             <FormControl component="fieldset" className={classes.formControl}>
+                                                <FormLabel className={classes.formLabel} component="legend">{QA.label}</FormLabel>  
                                                 <RadioGroup
-                                                    aria-label={el.label}
-                                                    name={el.label}
+                                                    aria-label={QA.label}
+                                                    name={QA.label}
                                                     className={classes.formRadio}
-                                                    onChange={handleChange(subject+'.categoryDetails')}
+                                                    onChange={ (e) => {
+                                                    let QAnDA = {question: QA.label, answer: e.target.value}
+                                                    {handleClick(values.categoryDetails.CategoryName + '[' +  index + ']' + ':', QAnDA)}
+                                                    }
+                                      
 
+                                                    }
+                                                        
                                                 >
-                                                        {el.options.map((options, index) => 
+                                                        {QA.options.map((options, index) => 
                                                         
                                                              <FormControlLabel key={index} className={classes.radioFix} value={options} control={<Radio/>} label={options}/>
                                                             

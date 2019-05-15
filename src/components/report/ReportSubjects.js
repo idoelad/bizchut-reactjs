@@ -23,30 +23,28 @@ class ReportSubjects extends Component {
    
     render() {
         console.log(this.props);
-        const subject = 'reportSubjects';
-        const { classes, handleChange } = this.props;
+        const subject = 'categoryDetails';
+        const { classes, handleClick } = this.props;
         
         return (
             <div>
                 <List className={classes.root}>
                     {
                         this.props.CategoriesDetails.map((el) =>
-                            <React.Fragment key={el.key}>
-                                <ListItem className={classes.subjectItem} name="ChosenCategory" onClick={() => {
-                                    console.log(el);
-                                    this.props.values.CategoryDetails = el;
-                                    handleChange(subject + '.ChosenCategory');
-                                    this.props.goToStep('InstituteRightsStatus');
-                                    }}
+                            <React.Fragment key={el.key} >
+                                <ListItem className={classes.subjectItem} name="categoryDetails" 
+                                    onClick= {() => {handleClick(subject, el); this.props.goToStep('InstituteRightsStatus') }}
+
                                     >
                                     <ListItemText
-                                        primary={<Typography style={{ fontSize: 20, color: 'rgb(255, 255, 255, 0.8)' }}>{el.CategoryName}</Typography>}
+                                        primary={<Typography style={{ fontSize: 20, color: 'rgb(255, 255, 255, 0.8)'}}>{el.CategoryName}</Typography>}
                                         secondary={
                                             <Typography style={{ fontSize: 14, color: '#FFFFFF' }}>
                                                 מלא פרטים
                                                 <ChevronLeftIcon style={{ fontSize: 17, marginBottom: -4, color: '#FFFFFF' }}/>
                                             </Typography>
                                         }
+                                
                                     />
                                 </ListItem>
                                 <Divider style={{ backgroundColor: 'rgb(255, 255, 255, 0.3)', height: 2, width: '90%', margin: 'auto' }}/>
