@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Divider from "@material-ui/core/Divider";
 
+
 const thisStyles = {
     subjectItem: {
         backgroundColor: '#0E4787',
@@ -18,45 +19,32 @@ const thisStyles = {
 const styles = {...formStyles, ...thisStyles};
 
 class ReportSubjects extends Component {
-
-    subjects = {
-        institute: [
-            {
-                step: 'reportInstitutePhysicalConditions',
-                title: 'תנאים פיזיים בכל ביתן/אגף',
-            },
-            {
-                step: 'reportOccupationAndDailyRoutine',
-                title: 'תעסוקה וסדר יום',
-            },
-            {
-                step: 'reportRelationsWithFamily',
-                title: 'קשר עם המשפחה',
-            },
-            {
-                step: 'reportRelationsWithCommunity',
-                title: 'קשר עם הקהילה',
-            },
-        ]
-    };
-
+    
+   
     render() {
-        const { classes, values } = this.props;
+        console.log(this.props);
+        const subject = 'categoryDetails';
+        const { classes, handleClick } = this.props;
+        
         return (
             <div>
                 <List className={classes.root}>
                     {
-                        this.subjects[values.instituteType].map(el =>
-                            <React.Fragment key={el.step}>
-                                <ListItem className={classes.subjectItem} onClick={(e) => {this.props.goToStep(el.step)}}>
+                        this.props.CategoriesDetails.map((el) =>
+                            <React.Fragment key={el.key} >
+                                <ListItem className={classes.subjectItem} name="categoryDetails" 
+                                    onClick= {() => {handleClick(subject, el); this.props.goToStep('InstituteRightsStatus') }}
+
+                                    >
                                     <ListItemText
-                                        primary={<Typography style={{ fontSize: 20, color: 'rgb(255, 255, 255, 0.8)' }}>{el.title}</Typography>}
+                                        primary={<Typography style={{ fontSize: 20, color: 'rgb(255, 255, 255, 0.8)'}}>{el.CategoryName}</Typography>}
                                         secondary={
                                             <Typography style={{ fontSize: 14, color: '#FFFFFF' }}>
                                                 מלא פרטים
                                                 <ChevronLeftIcon style={{ fontSize: 17, marginBottom: -4, color: '#FFFFFF' }}/>
                                             </Typography>
                                         }
+                                
                                     />
                                 </ListItem>
                                 <Divider style={{ backgroundColor: 'rgb(255, 255, 255, 0.3)', height: 2, width: '90%', margin: 'auto' }}/>

@@ -7,10 +7,20 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
 import Input from "@material-ui/core/Input";
-
 import {formStyles} from "../../formStyles";
-const thisStyles = {};
+
 const styles = {...formStyles, ...thisStyles};
+const thisStyles = {
+    pageTitle: {
+        backgroundColor: '#0E4787',
+        paddingBottom: 20,
+        paddingRight: 30,
+        paddingLeft: 10,
+        color: '#FFFFFF',
+        textAlign: 'right',
+        paddingTop: 10,
+    }
+};
 
 
 class Institute extends Component {
