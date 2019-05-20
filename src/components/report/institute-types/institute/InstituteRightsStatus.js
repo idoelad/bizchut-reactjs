@@ -13,11 +13,12 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Divider from "@material-ui/core/Divider";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import Input from "@material-ui/core/Input";
+import TextField from '@material-ui/core/TextField';
 
 const thisStyle = {
     subjectItem: {
-        backgroundColor: '#0E4787',
+        backgroundColor: '#FFFFFF',
         textAlign: 'right',
         color: '#FFFFFF'
 
@@ -36,11 +37,73 @@ const styles = {...formStyles, ...thisStyle};
 
 class InstituteRightsStatus extends Component {
    
-    render() {
-        const { classes , values, handleClick, handleUserChoise  } = this.props;
-        const subject = 'questionsAndAnswers';
+    questionRendering (QA, index) {
+        const { classes , values, handleClick, handleChange, getValue  } = this.props
+        const subject = QA.label;
+        switch(QA.type) {
+            case "radio":
+            return <RadioGroup
+            aria-label={QA.label}
+            name={QA.label}
+            className={classes.formRadio}
+            onChange={ (e) => {
+            let QAnDA = {question: QA.label, answer: e.target.value}
+            {handleClick(values.categoryDetails.CategoryName + '[' +  index + ']' + ':', QAnDA)}
+            }}>
+            {QA.options.map((options, index) => 
+            <FormControlLabel key={index} className={classes.radioFix} value={options.toString()} control={<Radio/>} label={options}/>   
+            )}
+             </RadioGroup>;
+
+            case "checkbox":        
+            const qa = QA;
+            let optionsList = qa.options;
+            console.log(qa, optionsList);
+            return  <FormControl component="fieldset" className={classes.formControl}>
+            <FormGroup>
+                <FormControlLabel
+                    control={<Checkbox checked={getValue({subject}+'.equipment.books')} onChange={handleChange(subject+'.equipment.books')}/>}
+                    label="ספרים"
+                />
+                <FormControlLabel
+                    control={<Checkbox checked={getValue(subject+'.equipment.computer')} onChange={handleChange(subject+'.equipment.computer')}/>}
+                    label="מחשב"
+                />
+                <FormControlLabel
+                    control={<Checkbox checked={getValue(subject+'.equipment.tv')} onChange={handleChange(subject+'.equipment.tv')}/>}
+                    label="טלוויזיה"
+                />
+                <FormControlLabel
+                    control={<Checkbox checked={getValue(subject+'.equipment.games')} onChange={handleChange(subject+'.equipment.games')}/>}
+                    label="משחקים"
+                />
+                <FormControlLabel
+                    control={<Checkbox checked={getValue(subject+'.equipment.arts')} onChange={handleChange(subject+'.equipment.arts')}/>}
+                    label="חומרי יצירה"
+                />
+                <FormControlLabel
+                    control={<Checkbox checked={getValue(subject+'.equipment.couches')} onChange={handleChange(subject+'.equipment.couches')}/>}
+                    label="ספות ישיבה"
+                />
+                <FormControlLabel
+                    control={<Checkbox checked={getValue(subject+'.equipment.musicPlayer')} onChange={handleChange(subject+'.equipment.musicPlayer')}/>}
+                    label="נגן מוזיקה"
+                />
+            </FormGroup>
+        </FormControl>          
+        
+             case 'input':
+             return <TextField
+             className={classes.TextField}
+             multiline = {true}
+             onChange={(e) => {
+                let QAnDA = {question: QA.label, answer: e.target.value}
+                {handleChange(values.categoryDetails.CategoryName + '[' +  index + ']' + ':', QAnDA)}
+                }}/>
+            }}
     
-        console.log(this.props);
+    render() {
+        const { classes , values  } = this.props
           
         return (
             <div className={classes.root}>
@@ -51,8 +114,7 @@ class InstituteRightsStatus extends Component {
                 </div>
 
             <List className={classes.root}>
-                    {
-                        values.categoryDetails.questionsAndAnswers.map((QA, index) =>
+                    {values.categoryDetails.questionsAndAnswers.map((QA, index) =>
                             <React.Fragment key={index}>
                                 <ListItem className={classes.subjectItem} name="ChosenCategory">
                                     <ListItemText
@@ -60,32 +122,13 @@ class InstituteRightsStatus extends Component {
                                             <form className={classes.form}>
                                              <FormControl component="fieldset" className={classes.formControl}>
                                                 <FormLabel className={classes.formLabel} component="legend">{QA.label}</FormLabel>  
-                                                <RadioGroup
-                                                    aria-label={QA.label}
-                                                    name={QA.label}
-                                                    className={classes.formRadio}
-                                                    onChange={ (e) => {
-                                                    let QAnDA = {question: QA.label, answer: e.target.value}
-                                                    {handleClick(values.categoryDetails.CategoryName + '[' +  index + ']' + ':', QAnDA)}
-                                                    }
-                                      
-
-                                                    }
-                                                        
-                                                >
-                                                        {QA.options.map((options, index) => 
-                                                        
-                                                             <FormControlLabel key={index} className={classes.radioFix} value={options} control={<Radio/>} label={options}/>
-                                                            
-                                                        )}
-                                                        
-                                                </RadioGroup>
+                                                {this.questionRendering(QA, index)}
                                             </FormControl>
                                             </form>
                                         }>
                                         </ListItemText>
                                 </ListItem>
-                                <Divider style={{ backgroundColor: 'rgb(255, 255, 255, 0.3)', height: 2, width: '90%', margin: 'auto' }}/>
+                                <Divider style={{ backgroundColor: 'rgb(119, 136, 153, 0.3)', height: 2, width: '100%', margin: 'auto' }}/>
                             </React.Fragment>
                         )
                     }

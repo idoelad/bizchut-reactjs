@@ -9,6 +9,7 @@ import Radio from "@material-ui/core/Radio";
 import Input from "@material-ui/core/Input";
 import {formStyles} from "../../formStyles";
 
+
 const styles = {...formStyles, ...thisStyles};
 const thisStyles = {
     pageTitle: {
@@ -40,6 +41,7 @@ class Institute extends Component {
                             <FormLabel className={classes.formLabel} component="legend">סוג המוסד</FormLabel>
                             <RadioGroup
                                 aria-label="סוג המוסד"
+                                required
                                 name="סוג המוסד"
                                 className={classes.formRadio}
                                 onChange={handleChange('instituteType')}
