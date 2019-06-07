@@ -75,8 +75,11 @@ class CommunityHousing extends Component {
     };
 
     handleSave = () => {
-      // Do Something on save
-      console.log(`report: ${JSON.stringify(this.state)}`)
+      this.props.goTo('thank-you', {header: 'בום'}, [
+      <Fab variant="extended" aria-label="אני רוצה להגיש תלונה פרטנית" className={this.props.classes.buttonComplaint} onClick={this.handleSave}>
+         דיור נוסף
+      </Fab>
+      ])
     };
 
     render() {
@@ -107,7 +110,7 @@ class CommunityHousing extends Component {
                     </div>
                     <div className={classes.buttonWrapper}>
                         <Fab variant="extended" aria-label="אני רוצה להגיש תלונה פרטנית" className={classes.buttonComplaint} onClick={this.handleSave}>
-                            אני רוצה להגיש תלונה פרטנית
+                           שליחת בקשה
                         </Fab>
                     </div>
                 </AppBar>
