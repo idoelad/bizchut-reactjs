@@ -75,11 +75,19 @@ class CommunityHousing extends Component {
     };
 
     handleSave = () => {
-      this.props.goTo('thank-you', {header: 'בום'}, [
-      <Fab variant="extended" aria-label="אני רוצה להגיש תלונה פרטנית" className={this.props.classes.buttonComplaint} onClick={this.handleSave}>
+      const {classes} = this.props;
+      this.props.goTo(
+          'thank-you',
+          {
+              header: 'יציאה לדיור בקהילה',
+              description: 'ניצור קשר בהקדם !'
+          },
+          [
+      <Fab variant="extended" aria-label="אני רוצה להגיש תלונה פרטנית" style={formStyles.redButton}>
          דיור נוסף
       </Fab>
-      ])
+      ]
+      )
     };
 
     render() {

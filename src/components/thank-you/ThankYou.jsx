@@ -8,10 +8,6 @@ import Divider from "@material-ui/core/Divider";
 
 import {formStyles} from "../../formStyles";
 const thisStyles = {
-    complaintAppBar: {
-        backgroundColor: '#0E4787',
-        boxShadow: 'none',
-    },
     complaintToolbar: {
         height: 50,
         color: '#FFFFFF',
@@ -20,18 +16,6 @@ const thisStyles = {
     },
     lowerToolbar: {
         height: 30
-    },
-    buttonComplaint: {
-        backgroundColor: '#F1173A',
-        color: '#FFFFFF',
-        width: '80%',
-        height: 50,
-        fontSize: 18,
-        marginTop: 20,
-        boxShadow: 'none',
-    },
-    buttonWrapper: {
-        textAlign: 'center'
     },
     toolbarDivider: {
         backgroundColor: '#819DBD',
@@ -57,16 +41,39 @@ const thisStyles = {
         marginLeft: 20,
         marginBottom: 15
     },
+    deccriptionFirstChild: {
+        marginBottom: 50
+    },
+    footer: {
+        backgroundColor: '#2A3A51',
+        height: 150,
+        textAlign: 'center',
+        color: '#FFF',
+    },
+    fullHeight: {
+        height: '100%'
+    },
+    alignCenter: {
+        margin: 15
+    },
+    body: {
+        height: '58vh',
+        margin: 15,
+        textAlign: 'center'
+    },
+    footerText: {
+        paddingTop: 35
+    }
 };
 
 const styles = {...formStyles, ...thisStyles};
 
 class ThankYou extends Component {
     render() {
-        const { classes, children, header } = this.props;
+        const { classes, children, header, description } = this.props;
 
         return (
-            <div className={classes.root}>
+            <div className={classes.fullHeight}>
                 <Toolbar className={classes.complaintToolbar}>
                     <Typography variant="h6" color="inherit">
                         {header}
@@ -76,13 +83,20 @@ class ThankYou extends Component {
                     <Divider className={classes.toolbarDivider} variant="middle" light={true}/>
                 </div>
                 <div className={classes.description}>
-                    <Typography color="inherit">
-                        ארגון בזכות מלווה אנשים המעוניינים לצאת למגורים בקהילה.
-                        תרשום לנו דרכי יצירת קשר איתך המועדפים מבחינתך ונשוחח איתך על כך:
+                    <Typography className={classes.deccriptionFirstChild} variant="h3" color="inherit">
+                        תודה רבה!
+                    </Typography>
+                    <Typography variant="h5" color="inherit">
+                        {description}
                     </Typography>
                 </div>
-                <div>
-                    {children.map(child => (<div key={Date.now()}>{child}</div>))}
+                <div className={classes.body}>
+                    {children.map(child => (<div key={Date.now()} className={child.props.classes}>{child}</div>))}
+                </div>
+                <div className={classes.footer} onClick={() => this.props.goTo('home')}>
+                    <Typography className={classes.footerText} variant="h5" color="inherit">
+                        חזרה לעמוד הבית
+                    </Typography>
                 </div>
             </div>
         );
