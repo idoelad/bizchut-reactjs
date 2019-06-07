@@ -186,12 +186,12 @@ class Home extends Component {
                     </div>
                     <div>
                         <p className={classes.drawerItems} style={{fontWeight: 900, cursor: 'auto'}}>מוסדות</p>
-                        <p className={classes.drawerItems} onClick={() => this.redirectTo('https://www.bizchut.org.il/')}>יציאה לדיור בקהילה</p>
+                        <p className={classes.drawerItems} onClick={() => this.props.goTo('community-house')}>יציאה לדיור בקהילה</p>
                         <p className={classes.drawerItems} onClick={() => this.redirectTo('https://www.bizchut.org.il/')}>לאתר עמותת בזכות</p>
                         <p className={classes.drawerItems} onClick={() => this.redirectTo('https://www.bizchut.org.il/')}>יפויי כח</p>
                     </div>
                     <div>
-                        <Divider className={classes.drawerDivider} variant="middle" light="true"/>
+                        <Divider className={classes.drawerDivider} variant="middle" light={true}/>
                         <div className={classes.drawerFooterText}>
                             בזכות, המרכז לזכויות אדם של<br/>
                             אנשים עם מוגבלויות<br/>

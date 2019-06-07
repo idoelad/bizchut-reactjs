@@ -6,6 +6,7 @@ import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import Home from "./components/Home";
 import Complaint from "./components/complaint/Complaint";
+import CommunityHousing from "./components/community-housing/CommunityHousing";
 import Report from "./components/report/Report";
 
 const theme = createMuiTheme({
@@ -57,6 +58,12 @@ class App extends Component {
       case 'report':
         return (
             <Report
+                goTo={this.goTo}
+            />
+        );
+      case 'community-house':
+        return (
+            <CommunityHousing
                 goTo={this.goTo}
             />
         );
