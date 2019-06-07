@@ -8,6 +8,7 @@ import Home from "./components/Home";
 import Complaint from "./components/complaint/Complaint";
 import CommunityHousing from "./components/community-housing/CommunityHousing";
 import Report from "./components/report/Report";
+import ThankYou from './components/thank-you/ThankYou';
 
 const theme = createMuiTheme({
   typography: {
@@ -30,18 +31,22 @@ const styles = {
 class App extends Component {
 
   state = {
-    path: 'home'
+    path: 'home',
+    chidlren: null,
+    props: null
   };
 
-  goTo = (pathName) => {
+  goTo = (pathName, props, children = null) => {
     console.log('goto', pathName);
     this.setState({
-      path: pathName
+      path: pathName,
+      children,
+      props
     })
   };
 
   renderPath() {
-    const { path } = this.state;
+    const { path, props, children } = this.state;
     switch(path) {
       case 'home':
         return (
@@ -66,6 +71,10 @@ class App extends Component {
             <CommunityHousing
                 goTo={this.goTo}
             />
+        );
+        case 'thank-you':
+        return (
+            <ThankYou children={children} {...props} goTo={this.goTo} />
         );
       default:
         return (
