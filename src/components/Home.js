@@ -188,7 +188,7 @@ class Home extends Component {
                         <p className={classes.drawerItems} style={{fontWeight: 900, cursor: 'auto'}}>מוסדות</p>
                         <p className={classes.drawerItems} onClick={() => this.props.goTo('community-house')}>יציאה לדיור בקהילה</p>
                         <p className={classes.drawerItems} onClick={() => this.redirectTo('https://www.bizchut.org.il/')}>לאתר עמותת בזכות</p>
-                        <p className={classes.drawerItems} onClick={() => this.redirectTo('https://www.bizchut.org.il/')}>יפויי כח</p>
+                        <p className={classes.drawerItems} onClick={() => this.props.goTo('power-of-attorney')}>יפויי כח</p>
                     </div>
                     <div>
                         <Divider className={classes.drawerDivider} variant="middle" light={true}/>

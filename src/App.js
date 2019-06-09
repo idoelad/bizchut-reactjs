@@ -7,6 +7,7 @@ import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import Home from "./components/Home";
 import Complaint from "./components/complaint/Complaint";
 import CommunityHousing from "./components/community-housing/CommunityHousing";
+import PowerOfAttorney from "./components/power-of-attorney/PowerOfAttorney";
 import Report from "./components/report/Report";
 import ThankYou from './components/thank-you/ThankYou';
 
@@ -69,6 +70,12 @@ class App extends Component {
       case 'community-house':
         return (
             <CommunityHousing
+                goTo={this.goTo}
+            />
+        );
+      case 'power-of-attorney':
+        return (
+            <PowerOfAttorney
                 goTo={this.goTo}
             />
         );

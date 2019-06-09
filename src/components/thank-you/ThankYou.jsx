@@ -46,7 +46,7 @@ const thisStyles = {
     },
     footer: {
         backgroundColor: '#2A3A51',
-        height: 150,
+        height: 94,
         textAlign: 'center',
         color: '#FFF',
     },
