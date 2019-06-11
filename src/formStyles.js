@@ -33,5 +33,14 @@ export const formStyles = {
     },
     textField: {
         width: '95%',
-    }
+    },
+    redButton: {
+        backgroundColor: '#F1173A',
+        color: '#FFFFFF',
+        width: '80%',
+        height: 50,
+        fontSize: 18,
+        marginTop: 20,
+        boxShadow: 'none',
+    },
 };
