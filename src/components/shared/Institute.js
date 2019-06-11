@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import withStyles from "@material-ui/core/styles/withStyles";
 import {Typography} from "@material-ui/core";
-import FormControl from "@material-ui/core/FormControl";
+import FormControl,{FormControlProps} from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -57,6 +57,7 @@ class Institute extends Component {
                             <Input
                                 className={classes.input}
                                 placeholder='התשובה שלך'
+                                required="true"
                                 inputProps={{
                                     'aria-label': 'שם המוסד',
                                 }}
@@ -69,6 +70,7 @@ class Institute extends Component {
                             <Input
                                 className={classes.input}
                                 placeholder='אפשר לציין רק עיר או אזור בארץ'
+                                required="true"
                                 inputProps={{
                                     'aria-label': 'כתובת המוסד (רחוב ועיר)',
                                 }}

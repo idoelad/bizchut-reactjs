@@ -9,7 +9,8 @@ import Divider from "@material-ui/core/Divider";
 import Fab from "@material-ui/core/Fab";
 import Institute from "../shared/Institute";
 import ReportSubjects from "./ReportSubjects";
-import InstituteRightsStatus from "./institute-types/institute/InstituteRightsStatus"
+import InstituteRightsStatus from "./institute-types/institute/InstituteRightsStatus";
+import ThankYou from "../thank-you/ThankYou";
 
 
 
@@ -48,6 +49,7 @@ const styles = {
 class Report extends Component {
     state = {
         step: 'institute',
+        prevStep: 'home',
         values: {
             instituteType: null,
             instituteName: '',
@@ -950,18 +952,20 @@ class Report extends Component {
         });
         window.scrollTo(0, 0)
     };
-
-    prevStep = () => {
-        const { step } = this.state;
-        const newStep = step - 1;
-        if (newStep >= 1) {
-            this.setState({
-                step: newStep
-            });
-        } else {
-            this.props.goTo('home');
-        }
-    };
+   
+    // prevStep = () => {
+    //     const { step } = this.state;
+    //     console.log(step);
+    //     const newStep = step - 1;
+    //     console.log(newStep);
+    //     if (newStep >= 1) {
+    //         this.setState({
+    //             step: newStep
+    //         });
+    //     } else {
+    //         this.props.goTo('home');
+    //     }
+    // };
 
     updateValues = (path, newValue) => {
         let { values } = this.state;
@@ -1011,6 +1015,13 @@ class Report extends Component {
         console.log(value);
         this.updateValues(path, value);
     }
+    validInstituteForm = () => {
+        let { values } = this.state;
+        console.log(values);
+           if (values.instituteType && values.instituteName && values.instituteAddress)
+                return true;
+        }
+
        
     renderStep() {
         const { step } = this.state;
@@ -1019,7 +1030,7 @@ class Report extends Component {
         switch(step) {
             case 'institute':
                 this.nextText = 'המשך לשאלון';
-                this.nextStep = 'reportSubjects';
+                this.nextStep = 'reportSubjects'; 
                 this.formPart = (
                     <Institute
                         handleChange={this.handleChange}
@@ -1029,7 +1040,8 @@ class Report extends Component {
                 break;
             case 'reportSubjects':
                 this.nextText = 'שמור ושלח דיווח';
-                this.nextStep = 'InstituteRightsStatus';
+                this.nextStep = 'thankYou'; 
+                this.prevStep = 'institute';
                 this.formPart = (
                     <ReportSubjects
                         CategoriesDetailsByInstituteType={this.CategoriesDetailsByInstituteType}
@@ -1041,8 +1053,9 @@ class Report extends Component {
                 );
                 break;
             case 'InstituteRightsStatus':
-                this.nextText = 'שמור ושלח דיווח';
-                this.nextStep = ''; //TODO
+                this.nextText = 'שמור פרטים';
+                this.nextStep = 'reportSubjects';
+                this.prevStep = 'reportSubjects';
                 this.formPart = (
                     <InstituteRightsStatus
                         handleChange={this.handleChange}
@@ -1053,6 +1066,13 @@ class Report extends Component {
                     />
                 );
                 break;
+                case 'thankYou': 
+                    this.formPart = (
+                        <ThankYou
+                        values={values}
+                        />
+                    )
+        
             default:
                 break;
         }
@@ -1065,11 +1085,11 @@ class Report extends Component {
             <div className={classes.root}>
                 <AppBar position="static" className={classes.complaintAppBar}>
                     <Toolbar className={classes.complaintToolbar}>
-                        <IconButton className={classes.menuButton} color="inherit" aria-label="Menu" onClick={this.prevStep}>
+                        <IconButton className={classes.menuButton} color="inherit" aria-label="Menu" onClick={()=> {this.goToStep(this.prevStep)}}>
                             <ChevronRightIcon />
                         </IconButton>
                         <Typography variant="h6" color="inherit">
-                            דיווח על מוסד
+                            דיווח על שם המוסד
                         </Typography>
                     </Toolbar>
                     <div className={classes.lowerToolbar}>
@@ -1078,7 +1098,10 @@ class Report extends Component {
                 </AppBar>
                 {this.formPart}
                 <div className={classes.footerBar}>
-                    <Fab variant="extended" className={classes.footerButton} onClick={(e) => {this.goToStep(this.nextStep)}}>
+                    <Fab variant="extended" className={classes.footerButton} onClick={(e) => {
+                        if (this.validInstituteForm())
+                                this.goToStep(this.nextStep)}
+                                }>
                         {this.nextText}
                     </Fab>
                 </div>

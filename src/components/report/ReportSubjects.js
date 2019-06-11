@@ -10,8 +10,9 @@ import Divider from "@material-ui/core/Divider";
 
 const thisStyles = {
     subjectItem: {
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#0E4787',
         textAlign: 'right',
+        color: '#FFFFFF'
     },
 };
 
@@ -48,9 +49,9 @@ class ReportSubjects extends Component {
 
                                     >
                                     <ListItemText
-                                        primary={<Typography style={{ fontSize: 20, color: 'rgb(47, 79, 79, 0.8)'}}>{el.CategoryName}</Typography>}
+                                        primary={<Typography style={{ fontSize: 20, color: '#FFFFFF'}}>{el.CategoryName}</Typography>}
                                         secondary={
-                                            <Typography style={{ fontSize: 14, color: '#A9A9A9' }}>
+                                            <Typography style={{ fontSize: 14, color: '#FFFFFF' }}>
                                                 מלא פרטים
                                                 <ChevronLeftIcon style={{ fontSize: 17, marginBottom: -4, color: '#808080' }}/>
                                             </Typography>
