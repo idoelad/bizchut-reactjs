@@ -41,7 +41,6 @@ class Institute extends Component {
                             <FormLabel className={classes.formLabel} component="legend">סוג המוסד</FormLabel>
                             <RadioGroup
                                 aria-label="סוג המוסד"
-                                required
                                 name="סוג המוסד"
                                 className={classes.formRadio}
                                 onChange={handleChange('instituteType')}
@@ -57,7 +56,6 @@ class Institute extends Component {
                             <Input
                                 className={classes.input}
                                 placeholder='התשובה שלך'
-                                required="true"
                                 inputProps={{
                                     'aria-label': 'שם המוסד',
                                 }}
@@ -70,7 +68,6 @@ class Institute extends Component {
                             <Input
                                 className={classes.input}
                                 placeholder='אפשר לציין רק עיר או אזור בארץ'
-                                required="true"
                                 inputProps={{
                                     'aria-label': 'כתובת המוסד (רחוב ועיר)',
                                 }}
