@@ -10,6 +10,8 @@ import CommunityHousing from "./components/community-housing/CommunityHousing";
 import PowerOfAttorney from "./components/power-of-attorney/PowerOfAttorney";
 import Report from "./components/report/Report";
 import ThankYou from './components/thank-you/ThankYou';
+import AppBar from '@material-ui/core/AppBar';
+import MediaQuery from 'react-responsive'
 
 const theme = createMuiTheme({
   typography: {
@@ -30,6 +32,11 @@ const styles = {
 };
 
 class App extends Component {
+  componentDidMount() {
+    window.onpopstate = (event) => {
+      this.goTo(event.state);
+    };
+  }
 
   state = {
     path: 'home',
@@ -48,6 +55,8 @@ class App extends Component {
 
   renderPath() {
     const { path, props, children } = this.state;
+    window.history.pushState(`${path}`, `${path.toUpperCase()}`, `/${path}`);
+
     switch(path) {
       case 'home':
         return (
@@ -96,6 +105,11 @@ class App extends Component {
     const { classes } = this.props;
     return (
         <MuiThemeProvider theme={theme}>
+          <MediaQuery minWidth={779}>
+            <AppBar color={'primary'}>
+              Boom
+            </AppBar>
+          </MediaQuery>
           <div className={classes.root}>
             {this.renderPath()}
           </div>
