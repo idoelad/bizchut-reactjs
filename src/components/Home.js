@@ -7,6 +7,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import {Typography} from "@material-ui/core";
 import Fab from "@material-ui/core/Fab";
 import Divider from "@material-ui/core/Divider";
+import MediaQuery from 'react-responsive'
 
 const styles = {
     topBar: {
@@ -139,9 +140,11 @@ class Home extends Component {
         return (
             <div className={classes.root}>
                 <div className={classes.topBar}>
-                    <IconButton className={classes.menuButton} aria-label="Menu" onClick={this.handleDrawerOpen}>
-                        <MenuIcon />
-                    </IconButton>
+                    <MediaQuery maxWidth={778}>
+                        <IconButton className={classes.menuButton} aria-label="Menu" onClick={this.handleDrawerOpen}>
+                            <MenuIcon />
+                        </IconButton>
+                    </MediaQuery>
                     <div className={classes.topBarTitle}>
                         <Typography className={classes.topBarTitleText} variant="h2" gutterBottom>
                                 מוסדות
@@ -174,32 +177,34 @@ class Home extends Component {
                     </div>
                 </div>
                 <div className={classes.footer}/>
-                <Drawer
-                    variant="persistent"
-                    classes={{paper: classes.drawerPaper}}
-                    open={this.state.drawerIsOpen}
-                >
-                    <div className={classes.drawerHeader}>
-                        <IconButton className={classes.drawerHeaderIcon} onClick={this.handleDrawerClose}>
-                            <CloseIcon />
-                        </IconButton>
-                    </div>
-                    <div>
-                        <p className={classes.drawerItems} style={{fontWeight: 900, cursor: 'auto'}}>מוסדות</p>
-                        <p className={classes.drawerItems} onClick={() => this.props.goTo('community-house')}>יציאה לדיור בקהילה</p>
-                        <p className={classes.drawerItems} onClick={() => this.redirectTo('https://www.bizchut.org.il/')}>לאתר עמותת בזכות</p>
-                        <p className={classes.drawerItems} onClick={() => this.props.goTo('power-of-attorney')}>יפויי כח</p>
-                    </div>
-                    <div>
-                        <Divider className={classes.drawerDivider} variant="middle" light={true}/>
-                        <div className={classes.drawerFooterText}>
-                            בזכות, המרכז לזכויות אדם של<br/>
-                            אנשים עם מוגבלויות<br/>
-                            כנפי נשרים 3, ירושלים 9546406<br/>
-                            טלפון: 02-6521308, פקס: 02-6221283
+                <MediaQuery maxWidth={770}>
+                    <Drawer
+                        variant="persistent"
+                        classes={{paper: classes.drawerPaper}}
+                        open={this.state.drawerIsOpen}
+                    >
+                        <div className={classes.drawerHeader}>
+                            <IconButton className={classes.drawerHeaderIcon} onClick={this.handleDrawerClose}>
+                                <CloseIcon />
+                            </IconButton>
                         </div>
-                    </div>
-                </Drawer>
+                        <div>
+                            <p className={classes.drawerItems} style={{fontWeight: 900, cursor: 'auto'}}>מוסדות</p>
+                            <p className={classes.drawerItems} onClick={() => this.props.goTo('community-house')}>יציאה לדיור בקהילה</p>
+                            <p className={classes.drawerItems} onClick={() => this.redirectTo('https://www.bizchut.org.il/')}>לאתר עמותת בזכות</p>
+                            <p className={classes.drawerItems} onClick={() => this.props.goTo('power-of-attorney')}>יפויי כח</p>
+                        </div>
+                        <div>
+                            <Divider className={classes.drawerDivider} variant="middle" light={true}/>
+                            <div className={classes.drawerFooterText}>
+                                בזכות, המרכז לזכויות אדם של<br/>
+                                אנשים עם מוגבלויות<br/>
+                                כנפי נשרים 3, ירושלים 9546406<br/>
+                                טלפון: 02-6521308, פקס: 02-6221283
+                            </div>
+                        </div>
+                    </Drawer>
+                </MediaQuery>
             </div>
         );
     }
