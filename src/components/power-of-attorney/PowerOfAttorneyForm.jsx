@@ -80,7 +80,7 @@ const thisStyles = {
     },
     law: {
         color: '#000',
-        fontSize: 25
+        fontSize: 16
     },
     formArea: {
         paddingTop: 20,

@@ -53,6 +53,32 @@ class App extends Component {
     })
   };
 
+  formSubmissionApi = (type, data) => {
+    let url;
+    // if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+    //     url = 'http://localhost:5001/bizchut/us-central1/formSubmittion'
+    // } else {
+        url = 'https://us-central1-bizchut.cloudfunctions.net/formSubmittion';
+    // }
+    return fetch(
+        url,
+        {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({type: type, data: data})
+        })
+        .then((response) => response.json())
+        .then((responseJson) => {
+          return responseJson;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+  };
+
   renderPath() {
     const { path, props, children } = this.state;
     window.history.pushState(`${path}`, `${path.toUpperCase()}`, `/${path}`);
@@ -86,6 +112,7 @@ class App extends Component {
         return (
             <PowerOfAttorney
                 goTo={this.goTo}
+                formSubmissionApi={this.formSubmissionApi}
             />
         );
         case 'thank-you':

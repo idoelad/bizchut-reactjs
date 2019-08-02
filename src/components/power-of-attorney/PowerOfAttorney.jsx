@@ -78,6 +78,7 @@ class PowerOfAttorney extends Component {
     handleSave = () => {
         console.log(this.state);
         const {classes} = this.props;
+        this.props.formSubmissionApi('PowerOfAttorney', this.state);
         this.props.goTo(
             'thank-you',
             {
