@@ -108,6 +108,7 @@ class App extends Component {
         return (
             <CommunityHousing
                 goTo={this.goTo}
+                formSubmissionApi={this.formSubmissionApi}
             />
         );
       case 'power-of-attorney':

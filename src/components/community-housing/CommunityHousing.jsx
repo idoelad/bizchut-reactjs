@@ -76,18 +76,8 @@ class CommunityHousing extends Component {
 
     handleSave = () => {
       const {classes} = this.props;
-      this.props.goTo(
-          'thank-you',
-          {
-              header: 'יציאה לדיור בקהילה',
-              description: 'ניצור קשר בהקדם !'
-          },
-          [
-      <Fab variant="extended" aria-label="אני רוצה להגיש תלונה פרטנית" style={formStyles.redButton}>
-         דיור נוסף
-      </Fab>
-      ]
-      )
+      this.props.formSubmissionApi('community-housing', this.state);
+      this.props.goTo('thank-you')
     };
 
     render() {

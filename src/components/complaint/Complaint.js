@@ -71,18 +71,7 @@ class Complaint extends Component {
             window.scrollTo(0, 0)
         } else {
             this.props.formSubmissionApi('complaint', this.state.values);
-            this.props.goTo(
-                'thank-you',
-                {
-                    header: 'יפויי כוח וויתור סודיות',
-                    description: 'ניצור קשר בהקדם !'
-                },
-                [
-                    <Fab variant="extended" aria-label="אני רוצה להגיש תלונה פרטנית" style={formStyles.redButton}>
-                        דיור נוסף
-                    </Fab>
-                ]
-            )
+            this.props.goTo('thank-you')
         }
 
     };
