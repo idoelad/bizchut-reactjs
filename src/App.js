@@ -52,6 +52,7 @@ class App extends Component {
   };
 
   formSubmissionApi = (type, data) => {
+    console.log(data);
     let url;
     // if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
     //     url = 'http://localhost:5001/bizchut/us-central1/formSubmittion'
@@ -92,6 +93,7 @@ class App extends Component {
         return (
             <Complaint
                 goTo={this.goTo}
+                formSubmissionApi={this.formSubmissionApi}
             />
         );
       case 'report':
@@ -104,6 +106,7 @@ class App extends Component {
         return (
             <CommunityHousing
                 goTo={this.goTo}
+                formSubmissionApi={this.formSubmissionApi}
             />
         );
       case 'power-of-attorney':

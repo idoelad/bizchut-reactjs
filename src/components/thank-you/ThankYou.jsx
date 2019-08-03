@@ -76,7 +76,7 @@ class ThankYou extends Component {
             <div className={classes.fullHeight}>
                 <Toolbar className={classes.complaintToolbar}>
                     <Typography variant="h6" color="inherit">
-                        {header}
+                        {/*{header}*/}
                     </Typography>
                 </Toolbar>
                 <div className={classes.lowerToolbar}>
@@ -84,10 +84,10 @@ class ThankYou extends Component {
                 </div>
                 <div className={classes.description}>
                     <Typography className={classes.deccriptionFirstChild} variant="h3" color="inherit">
-                        תודה רבה!
+                        תודה רבה.
                     </Typography>
                     <Typography variant="h5" color="inherit">
-                        {description}
+                        קיבלנו את פנייתך ונהיה בקשר בהקדם.
                     </Typography>
                 </div>
                 <div className={classes.body}>
