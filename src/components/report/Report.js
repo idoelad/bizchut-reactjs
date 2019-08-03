@@ -112,7 +112,7 @@ class Report extends Component {
             "נגן מוזיקה"
           ],
           answer: "",
-          type: "Checkbox"
+          type: "checkbox"
         },
         {
           label: "האם יש באגף מטבח שמאפשר הכנת אוכל במקום?",
@@ -303,8 +303,9 @@ class Report extends Component {
           type: "radio"
         },
         {
-          label: "אם כן, מהי צורת הענישה המקובלת במוסד??",
-          type: "input"
+          label: "אם כן, מהי צורת הענישה המקובלת במוסד?",
+          type: "input",
+          answer: ""
         },
         {
           label: "האם הדיירים זוכים ליחס נעים ולהקשבה?",
@@ -412,7 +413,7 @@ class Report extends Component {
       questionsAndAnswers: [
         {
           answer: "",
-          type: "input"
+          type: "text"
         }
       ]
     }
@@ -558,6 +559,7 @@ class Report extends Component {
             handleChange={this.handleChange}
             handleClick={this.handleClick}
             handleSelect={this.handleSelect}
+            getValue={this.getValue}
             values={values}
             goToStep={this.prevStep}
           />

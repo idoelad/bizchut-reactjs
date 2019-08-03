@@ -14,6 +14,8 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Divider from "@material-ui/core/Divider";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import Input from "@material-ui/core/Input";
+import TextField from "@material-ui/core/TextField";
 
 const thisStyle = {
     subjectItem: {
@@ -36,7 +38,101 @@ const thisStyle = {
 const styles = {...formStyles, ...thisStyle};
 
 class InstituteRightsStatus extends Component {
-   
+    renderInput(QA) {
+        const { classes , values, handleSelect, getValue } = this.props;
+        switch (QA.type) {
+            case 'radio':
+                return (
+                    <RadioGroup
+                        aria-label={QA.label}
+                        name={QA.label}
+                        className={classes.formRadio}
+                        onChange={
+                            (e) => {
+                                // let QAnDA = {question: QA.label, answer: e.target.value}
+                                // {handleClick(values.categoryDetails.CategoryName + '[' +  index + ']' + ':', QAnDA)}
+                                let question = QA.label;
+                                let answer = e.target.value;
+                                {handleSelect('questions.'+values.categoryDetails.CategoryName+'.'+question, answer)}
+                            }
+                        }
+                    >
+                        {QA.options.map((options, index) =>
+                            <FormControlLabel key={index} className={classes.radioFix} value={options} control={<Radio/>} label={options}/>
+                        )}
+                    </RadioGroup>
+                );
+            case 'input':
+                return (
+                    <Input
+                        className={classes.input}
+                        onChange={
+                            (e) => {
+                                let question = QA.label;
+                                let answer = e.target.value;
+                                {handleSelect('questions.'+values.categoryDetails.CategoryName+'.'+question, answer)}
+                            }
+                        }
+                        defaultValue={values.name}
+                    />
+                );
+            case 'text':
+                return (
+                    <TextField
+                        multiline
+                        rows="5"
+                        onChange={
+                            (e) => {
+                                let question = QA.label;
+                                let answer = e.target.value;
+                                {handleSelect('questions.'+values.categoryDetails.CategoryName+'.'+question, answer)}
+                            }
+                        }
+                        className={classes.textField}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                );
+            case 'checkbox':
+                return (
+                    <FormGroup>
+                        {QA.options.map((option, index) =>
+                            <FormControlLabel
+                                key={index}
+                                control={
+                                    <Checkbox
+                                        onChange={
+                                            (e) => {
+                                                console.log(e.target.checked);
+                                                let question = QA.label;
+                                                let path = 'questions.'+values.categoryDetails.CategoryName+'.'+question;
+                                                let currentAnswer = getValue(path);
+                                                let answer;
+                                                let value = e.target.value;
+                                                if (e.target.checked) {
+                                                    answer = currentAnswer ? currentAnswer+','+value : value;
+                                                } else {
+                                                    let currentAnswerParts = currentAnswer ? currentAnswer.split(',') : [];
+                                                    currentAnswerParts = currentAnswerParts.filter(item => item !== value);
+                                                    answer = currentAnswerParts.join(',');
+                                                }
+                                                {handleSelect(path, answer)}
+                                            }
+                                        }
+                                        value={option}
+                                    />}
+                                label={option}
+                            />
+                        )}
+
+                    </FormGroup>
+                );
+            default:
+                return '';
+        }
+
+    }
+
     render() {
         const { classes , values, handleSelect, handleUserChoise  } = this.props;
         const subject = 'questionsAndAnswers';
@@ -58,29 +154,8 @@ class InstituteRightsStatus extends Component {
                                         primary={
                                             <form className={classes.form}>
                                              <FormControl component="fieldset" className={classes.formControl}>
-                                                <FormLabel className={classes.formLabel} component="legend">{QA.label}</FormLabel>  
-                                                <RadioGroup
-                                                    aria-label={QA.label}
-                                                    name={QA.label}
-                                                    className={classes.formRadio}
-                                                    onChange={
-                                                        (e) => {
-                                                            // let QAnDA = {question: QA.label, answer: e.target.value}
-                                                            // {handleClick(values.categoryDetails.CategoryName + '[' +  index + ']' + ':', QAnDA)}
-                                                            let question = QA.label;
-                                                            let answer = e.target.value;
-                                                            {handleSelect('questions.'+values.categoryDetails.CategoryName+'.'+question, answer)}
-                                                        }
-                                                    }
-                                                        
-                                                >
-                                                        {QA.options.map((options, index) => 
-                                                        
-                                                             <FormControlLabel key={index} className={classes.radioFix} value={options} control={<Radio/>} label={options}/>
-                                                            
-                                                        )}
-                                                        
-                                                </RadioGroup>
+                                                <FormLabel className={classes.formLabel} component="legend">{QA.label}</FormLabel>
+                                                 {this.renderInput(QA)}
                                             </FormControl>
                                             </form>
                                         }>
