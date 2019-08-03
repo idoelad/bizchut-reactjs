@@ -38,11 +38,8 @@ const styles = {...formStyles, ...thisStyle};
 class InstituteRightsStatus extends Component {
    
     render() {
-        const { classes , values, handleClick, handleUserChoise  } = this.props;
+        const { classes , values, handleSelect, handleUserChoise  } = this.props;
         const subject = 'questionsAndAnswers';
-    
-        console.log(this.props);
-          
         return (
             <div className={classes.root}>
                 <div className={classes.pageTitle}>
@@ -66,12 +63,14 @@ class InstituteRightsStatus extends Component {
                                                     aria-label={QA.label}
                                                     name={QA.label}
                                                     className={classes.formRadio}
-                                                    onChange={ (e) => {
-                                                    let QAnDA = {question: QA.label, answer: e.target.value}
-                                                    {handleClick(values.categoryDetails.CategoryName + '[' +  index + ']' + ':', QAnDA)}
-                                                    }
-                                      
-
+                                                    onChange={
+                                                        (e) => {
+                                                            // let QAnDA = {question: QA.label, answer: e.target.value}
+                                                            // {handleClick(values.categoryDetails.CategoryName + '[' +  index + ']' + ':', QAnDA)}
+                                                            let question = QA.label;
+                                                            let answer = e.target.value;
+                                                            {handleSelect('questions.'+values.categoryDetails.CategoryName+'.'+question, answer)}
+                                                        }
                                                     }
                                                         
                                                 >

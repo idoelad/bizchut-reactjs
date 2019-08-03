@@ -100,6 +100,7 @@ class App extends Component {
         return (
             <Report
                 goTo={this.goTo}
+                formSubmissionApi={this.formSubmissionApi}
             />
         );
       case 'community-house':

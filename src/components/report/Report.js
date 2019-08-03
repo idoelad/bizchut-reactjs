@@ -84,7 +84,8 @@ class Report extends Component {
             type: ""
           }
         ]
-      }
+      },
+      questions: {}
     }
   };
 
@@ -513,12 +514,16 @@ class Report extends Component {
 
   handleChange = path => e => {
     let value =
-      e.target.type === "checkbox" ? e.target.checked : e.target.value;
-    console.log(path, value);
+    e.target.type === "checkbox" ? e.target.checked : e.target.value;
     this.updateValues(path, value);
   };
+
   handleClick = (path, value) => {
-    console.log(value);
+    this.updateValues(path, value);
+  };
+
+  handleSelect = (path, value) => {
+    console.log(path, value);
     this.updateValues(path, value);
   };
 
@@ -540,6 +545,7 @@ class Report extends Component {
             CategoriesDetails={this.CategoriesDetails}
             handleChange={this.handleChange}
             handleClick={this.handleClick}
+            handleSelect={this.handleSelect}
             values={values}
             goToStep={this.goNextStep}
           />
@@ -551,6 +557,7 @@ class Report extends Component {
           <InstituteRightsStatus
             handleChange={this.handleChange}
             handleClick={this.handleClick}
+            handleSelect={this.handleSelect}
             values={values}
             goToStep={this.prevStep}
           />
@@ -567,8 +574,8 @@ class Report extends Component {
         );
         break;
       case "Finish":
-        //todo: validation?!
-        this.props.goTo("thank-you");
+        this.props.formSubmissionApi('report', this.state.values);
+        this.props.goTo('thank-you');
         break;
       default:
         break;

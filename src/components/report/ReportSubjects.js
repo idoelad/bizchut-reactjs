@@ -25,7 +25,6 @@ class ReportSubjects extends Component {
     
    
     render() {
-        console.log(this.props);
         const subject = 'categoryDetails';
         const { classes, handleClick } = this.props;
         
