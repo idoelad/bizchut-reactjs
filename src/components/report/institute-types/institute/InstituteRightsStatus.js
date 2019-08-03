@@ -17,7 +17,8 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 
 const thisStyle = {
     subjectItem: {
-        backgroundColor: '#0E4787',
+        //backgroundColor: '#0E4787',
+        backgroundColor: '#FFFFFF',
         textAlign: 'right',
         color: '#FFFFFF'
 
@@ -54,6 +55,7 @@ class InstituteRightsStatus extends Component {
                     {
                         values.categoryDetails.questionsAndAnswers.map((QA, index) =>
                             <React.Fragment key={index}>
+                            <div>
                                 <ListItem className={classes.subjectItem} name="ChosenCategory">
                                     <ListItemText
                                         primary={
@@ -85,6 +87,7 @@ class InstituteRightsStatus extends Component {
                                         }>
                                         </ListItemText>
                                 </ListItem>
+                                </div>
                                 <Divider style={{ backgroundColor: 'rgb(255, 255, 255, 0.3)', height: 2, width: '90%', margin: 'auto' }}/>
                             </React.Fragment>
                         )

@@ -20,7 +20,7 @@ export const formStyles = {
         paddingBottom: 10
     },
     formControl: {
-        paddingBottom: 30
+        paddingBottom: 30,
     },
     radioFix: {
         maxWidth: '80%'

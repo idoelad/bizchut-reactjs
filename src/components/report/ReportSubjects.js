@@ -14,6 +14,9 @@ const thisStyles = {
         backgroundColor: '#0E4787',
         textAlign: 'right',
     },
+    formItem: {
+        backgroundColor: '#FFFFFF',
+    },
 };
 
 const styles = {...formStyles, ...thisStyles};
@@ -32,8 +35,9 @@ class ReportSubjects extends Component {
                     {
                         this.props.CategoriesDetails.map((el) =>
                             <React.Fragment key={el.key} >
+                            <div className={classes.formItem}>
                                 <ListItem className={classes.subjectItem} name="categoryDetails" 
-                                    onClick= {() => {handleClick(subject, el); this.props.goToStep('InstituteRightsStatus') }}
+                                    onClick= {() => {handleClick(subject, el); this.props.goToStep() }}
 
                                     >
                                     <ListItemText
@@ -47,6 +51,7 @@ class ReportSubjects extends Component {
                                 
                                     />
                                 </ListItem>
+                                </div>
                                 <Divider style={{ backgroundColor: 'rgb(255, 255, 255, 0.3)', height: 2, width: '90%', margin: 'auto' }}/>
                             </React.Fragment>
                         )

@@ -71,7 +71,7 @@ const styles = {...formStyles, ...thisStyles};
 class ThankYou extends Component {
     render() {
         const { classes, children, header, description } = this.props;
-
+        const childrenView = children ? children.map(child => (<div key={Date.now()} className={child.props.classes}>{child}</div>)): null;
         return (
             <div className={classes.fullHeight}>
                 <Toolbar className={classes.complaintToolbar}>
@@ -91,7 +91,7 @@ class ThankYou extends Component {
                     </Typography>
                 </div>
                 <div className={classes.body}>
-                    {children.map(child => (<div key={Date.now()} className={child.props.classes}>{child}</div>))}
+                    {childrenView}
                 </div>
                 <div className={classes.footer} onClick={() => this.props.goTo('home')}>
                     <Typography className={classes.footerText} variant="h5" color="inherit">

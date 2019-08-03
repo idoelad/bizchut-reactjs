@@ -51,25 +51,30 @@ const styles = {
     },
     buttons: {
         textAlign: 'center',
-        paddingBottom: 40
+        paddingBottom: 40,
+        // display: 'flex',
+        // flexDirection: 'column',
+        // alignItems:'center'
     },
     buttonComplaint: {
         backgroundColor: '#F1173A',
         color: '#FFFFFF',
-        width: '80%',
         height: 50,
         fontSize: 18,
         boxShadow: 'none',
+        width: '80%',
+        //width:'400px',
     },
     buttonInstitute: {
         marginTop: 30,
         backgroundColor: 'transparent',
         color: '#FFFFFF',
         border: '4px solid #FFFFFF',
-        width: '80%',
         height: 50,
         fontSize: 18,
         boxShadow: 'none',
+        width: '80%',
+        //width:'400px',
     },
     menuButton: {
         position: 'fixed',
