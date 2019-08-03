@@ -44,6 +44,7 @@ const styles = {
     mainDescription: {
         paddingRight: 20,
         paddingBottom: 30,
+        paddingTop: 30,
         paddingLeft: 10
     },
     mainDescriptionText: {
@@ -163,11 +164,6 @@ class Home extends Component {
                     </div>
                 </div>
                 <div className={classes.main}>
-                    <div className={classes.mainTitle}>
-                        <Typography className={classes.mainTitleText} variant="h5" gutterBottom>
-                            אז מה עכשיו?
-                        </Typography>
-                    </div>
                     <div className={classes.mainDescription}>
                         <Typography className={classes.mainDescriptionText} variant="h6" gutterBottom>
                             בחרו באחת מהאפשרויות הבאות ודווחו לארגון בזכות באופן דיסקרטי.

@@ -54,7 +54,6 @@ class Institute extends Component {
                             <FormLabel className={classes.formLabel} component="legend">שם המסגרת</FormLabel>
                             <Input
                                 className={classes.input}
-                                placeholder='התשובה שלך'
                                 inputProps={{
                                     'aria-label': 'שם המסגרת',
                                 }}
