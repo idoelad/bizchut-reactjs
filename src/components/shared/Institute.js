@@ -45,9 +45,9 @@ class Institute extends Component {
                                 onChange={handleChange('instituteType')}
                                 defaultValue={values.instituteType}
                             >
-                                <FormControlLabel className={classes.radioFix} value="institute" control={<Radio />} label="מוסד" />
-                                <FormControlLabel className={classes.radioFix} value="psychical_hospital" control={<Radio />} label="בית חולים פסיכיאטרי" />
-                                <FormControlLabel className={classes.radioFix} value="hostel" control={<Radio />} label="הוסטל" />
+                                <FormControlLabel className={classes.radioFix} value="מוסד" control={<Radio />} label="מוסד" />
+                                <FormControlLabel className={classes.radioFix} value="בית חולים פסיכיאטרי" control={<Radio />} label="בית חולים פסיכיאטרי" />
+                                <FormControlLabel className={classes.radioFix} value="הוסטל" control={<Radio />} label="הוסטל" />
                             </RadioGroup>
                         </FormControl>
                         <FormControl component="fieldset" className={classes.formControl}>

@@ -10,6 +10,7 @@ import Divider from "@material-ui/core/Divider";
 import Fab from "@material-ui/core/Fab";
 import ComplaintDetails from "./ComplaintDetails";
 import ComplaintPersonalDetails from "./ComplaintPersonalDetails";
+import {formStyles} from "../../formStyles";
 
 const styles = {
     complaintAppBar: {
@@ -69,9 +70,19 @@ class Complaint extends Component {
             });
             window.scrollTo(0, 0)
         } else {
-            //TODO send API and go to "Thank you" page
-            alert('*** Thank you (Under construction...) ****');
-            this.props.goTo('home')
+            this.props.formSubmissionApi('complaint', this.state.values);
+            this.props.goTo(
+                'thank-you',
+                {
+                    header: 'יפויי כוח וויתור סודיות',
+                    description: 'ניצור קשר בהקדם !'
+                },
+                [
+                    <Fab variant="extended" aria-label="אני רוצה להגיש תלונה פרטנית" style={formStyles.redButton}>
+                        דיור נוסף
+                    </Fab>
+                ]
+            )
         }
 
     };
@@ -113,8 +124,17 @@ class Complaint extends Component {
         this.updateValues('images', newImages);
     };
 
-    addRecording = (recording) => {
-        let { recordings } = this.state.values;
+    addRecording = async (recording) => {
+        let {recordings} = this.state.values;
+        var reader = new FileReader();
+        console.log(recording.blobURL);
+        let blob = await fetch(recording.blobURL).then(
+            r => r.blob()
+        );
+        reader.readAsDataURL(blob);
+        reader.onloadend = function () {
+            recording.blob = reader.result;
+        };
         recordings.push(recording);
         this.updateValues('recordings', recordings);
     };
