@@ -134,6 +134,24 @@ class ComplaintDetails extends Component {
         console.log('chunk of real-time data is: ', recordedBlob);
     };
 
+    renderAddImage() {
+        const { classes, values} = this.props;
+        //Temp: do not allow more than 1 image (payload will be too long)
+        return values.images.length < 1 ?  (
+            <Button variant="contained" className={classes.button} >
+                <label htmlFor='single'>
+                    <AddAPhotoIcon/>
+                </label>
+                <input
+                    type="file"
+                    //multiple
+                    accept="image/x-png,image/gif,image/jpeg"
+                    id='single'
+                    onChange={(e)=>this.handleAddImages(e)}
+                />
+            </Button>
+        ) :  '';
+    }
 
     render() {
         const { classes, values, handleChange, removeImage, addRecording} = this.props;
@@ -175,18 +193,8 @@ class ComplaintDetails extends Component {
                                         )
                                     })
                                 }
-                                <Button variant="contained" className={classes.button} >
-                                    <label htmlFor='single'>
-                                        <AddAPhotoIcon/>
-                                    </label>
-                                    <input
-                                        type="file"
-                                        multiple
-                                        accept="image/x-png,image/gif,image/jpeg"
-                                        id='single'
-                                        onChange={(e)=>this.handleAddImages(e)}
-                                    />
-                                </Button>
+                                {this.renderAddImage()}
+
                             </div>
                         </FormControl>
                         <FormControl component="fieldset" className={classes.formControl}>
