@@ -41,6 +41,11 @@ const styles = {
         width: '80%',
         fontSize: 16,
         boxShadow: 'none'
+    },
+    disclaimer: {
+        fontSize: 10,
+        paddingTop: 10,
+        color: 'white'
     }
 };
 
@@ -151,7 +156,7 @@ class Complaint extends Component {
                 );
                 break;
             case 2:
-                this.nextText = 'שמור והמשך לפרטים אישיים';
+                this.nextText = 'שמור והמשך';
                 this.formPart = (
                     <ComplaintDetails
                         nextStep={this.nextStep}
@@ -165,7 +170,7 @@ class Complaint extends Component {
                 );
                 break;
             case 3:
-                this.nextText = 'שליחת תלונה אנונימית';
+                this.nextText = 'שלח';
                 this.formPart = (
                     <ComplaintPersonalDetails
                         nextStep={this.nextStep}
@@ -202,7 +207,16 @@ class Complaint extends Component {
                     <Fab variant="extended" aria-label="שמור והמשך לפרטי הדיווח" className={classes.footerButton} onClick={this.nextStep}>
                         {this.nextText}
                     </Fab>
+                    {
+                        this.state.step === 3 ?
+                            <div className={classes.disclaimer}>
+                                <Typography variant='caption text' color="inherit">
+                                    הדיווח הוא דיסקרטי לחלוטין. כל הפרטים ישארו אצלנו ולא ימסרו לאף גורם אחר.
+                                </Typography>
+                            </div> : ''
+                    }
                 </div>
+
             </div>
         );
     }

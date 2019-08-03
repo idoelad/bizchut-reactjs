@@ -49,6 +49,7 @@ const thisStyles = {
         height: 94,
         textAlign: 'center',
         color: '#FFF',
+        marginTop: 150
     },
     fullHeight: {
         height: '100%'
@@ -57,7 +58,6 @@ const thisStyles = {
         margin: 15
     },
     body: {
-        height: '58vh',
         margin: 15,
         textAlign: 'center'
     },
@@ -86,8 +86,8 @@ class ThankYou extends Component {
                     <Typography className={classes.deccriptionFirstChild} variant="h3" color="inherit">
                         תודה רבה.
                     </Typography>
-                    <Typography variant="h5" color="inherit">
-                        קיבלנו את פנייתך ונהיה בקשר בהקדם.
+                    <Typography variant="h6" color="inherit">
+                        אנחנו מחייבים לטפל בפנייה שלך בהקדם האפשרי. במקרה הצורך, ניצור קשר כדי לשוחח על הפרטים.
                     </Typography>
                 </div>
                 <div className={classes.body}>

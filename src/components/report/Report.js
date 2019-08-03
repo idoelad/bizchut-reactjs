@@ -92,7 +92,7 @@ class Report extends Component {
   CategoriesDetails = [
     {
       key: "physicalConditions",
-      CategoryName: "תנאים פיזיים בכל ביתן/אגף",
+      CategoryName: "תנאי מחייה",
       questionsAndAnswers: [
         {
           label: "כמה דיירים חיים בחדר?",

@@ -29,7 +29,7 @@ class ComplaintPersonalDetails extends Component {
             <div className={classes.root}>
                 <div className={classes.pageTitle}>
                     <Typography variant="h5" color="inherit">
-                        ניתן להגיש תלונה באנונימיות, אך ככל שיהיו לנו יותר פרטים נוכל לטפל ביעילות רבה יותר
+                        ניתן להגיש דיווח באנונימיות, אך ככל שיהיו לנו יותר פרטים נוכל לטפל ביעילות רבה יותר
                     </Typography>
                 </div>
                 <div className={classes.formArea}>
