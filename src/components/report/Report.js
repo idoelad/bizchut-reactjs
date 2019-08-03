@@ -10,6 +10,7 @@ import Fab from "@material-ui/core/Fab";
 import Institute from "../shared/Institute";
 import ReportSubjects from "./ReportSubjects";
 import InstituteRightsStatus from "./institute-types/institute/InstituteRightsStatus";
+import ComplaintPersonalDetails from "../complaint/ComplaintPersonalDetails"
 
 const styles = {
   complaintAppBar: {
@@ -50,14 +51,18 @@ class Report extends Component {
   };
   step2 = {
     key: "reportSubjects",
-    nextText: "שמור ושלח דיווח"
+    nextText: "שמור והמשך"
   };
 
   step3 = {
     key: "InstituteRightsStatus",
-    nextText: "שמור"
+    nextText: "שמור והמשך"
   };
   step4 = {
+    key: "Details",
+    nextText: "שמור ושלח דיווח"
+  };
+  step5 = {
     key: "Finish",
     nextText: "סגור"
   };
@@ -419,6 +424,7 @@ class Report extends Component {
     window.scrollTo(0, 0);
   };
 
+  //from component "next step call"
   goNextStep = () => {
     const { step } = this.state;
 
@@ -438,7 +444,6 @@ class Report extends Component {
           step: this.step2
         });
         break;
-
       default:
         break;
     }
@@ -541,7 +546,7 @@ class Report extends Component {
         );
         break;
       case "InstituteRightsStatus":
-        this.nextStep = this.step2; //TODO
+        this.nextStep = this.step2;
         this.formPart = (
           <InstituteRightsStatus
             handleChange={this.handleChange}
@@ -549,6 +554,16 @@ class Report extends Component {
             values={values}
             goToStep={this.prevStep}
           />
+        );
+        break;
+    case "Details":
+        this.nextStep = this.step5;
+        this.formPart = (
+            <ComplaintPersonalDetails
+            nextStep={this.goNextStep}
+            handleChange={this.handleChange}
+            values={values}
+        />
         );
         break;
       case "Finish":
