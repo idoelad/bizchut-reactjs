@@ -35,7 +35,6 @@ const styles = {
     textAlign: "center"
   },
   footerButton: {
-    backgroundColor: "#F1173A",
     color: "#FFFFFF",
     marginTop: 25,
     width: "80%",
@@ -1130,6 +1129,15 @@ class Report extends Component {
     this.updateValues(path, value);
   };
 
+  wasAnswered = (categoryName) => {
+    for (const [category, questions] of Object.entries(this.state.values.questions)) {
+      if (categoryName === category) {
+        return true;
+      }
+    }
+    return false;
+  };
+
   renderStep() {
     const { step } = this.state;
     let values = this.state.values;
@@ -1163,6 +1171,7 @@ class Report extends Component {
             handleChange={this.handleChange}
             handleClick={this.handleClick}
             handleSelect={this.handleSelect}
+            wasAnswered={this.wasAnswered}
             values={values}
             goToStep={this.goNextStep}
           />
@@ -1231,6 +1240,7 @@ class Report extends Component {
         <div className={classes.footerBar}>
           <Fab
             variant="extended"
+            color="secondary"
             className={classes.footerButton}
             onClick={e => {
               this.goToStep(this.nextStep);

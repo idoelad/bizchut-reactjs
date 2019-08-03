@@ -35,7 +35,6 @@ const styles = {
         textAlign: 'center'
     },
     footerButton: {
-        backgroundColor: '#F1173A',
         color: '#FFFFFF',
         marginTop: 25,
         width: '80%',
@@ -204,7 +203,12 @@ class Complaint extends Component {
                 </AppBar>
                 {this.formPart}
                 <div className={classes.footerBar}>
-                    <Fab variant="extended" aria-label="שמור והמשך לפרטי הדיווח" className={classes.footerButton} onClick={this.nextStep}>
+                    <Fab variant="extended"
+                         aria-label="שמור והמשך לפרטי הדיווח"
+                         className={classes.footerButton}
+                         onClick={this.nextStep}
+                         color="secondary"
+                    >
                         {this.nextText}
                     </Fab>
                     {

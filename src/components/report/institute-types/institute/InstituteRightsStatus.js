@@ -38,6 +38,10 @@ const thisStyle = {
 const styles = {...formStyles, ...thisStyle};
 
 class InstituteRightsStatus extends Component {
+    componentDidMount() {
+        window.scrollTo(0, 0)
+    }
+
     renderInput(QA) {
         const { classes , values, handleSelect, getValue } = this.props;
         switch (QA.type) {

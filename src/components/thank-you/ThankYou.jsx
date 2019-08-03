@@ -90,9 +90,6 @@ class ThankYou extends Component {
                         אנחנו מחייבים לטפל בפנייה שלך בהקדם האפשרי. במקרה הצורך, ניצור קשר כדי לשוחח על הפרטים.
                     </Typography>
                 </div>
-                <div className={classes.body}>
-                    {childrenView}
-                </div>
                 <div className={classes.footer} onClick={() => this.props.goTo('home')}>
                     <Typography className={classes.footerText} variant="h5" color="inherit">
                         חזרה לעמוד הבית

@@ -17,14 +17,13 @@ const theme = createMuiTheme({
   },
   palette: {
     primary: { main: '#257BDE' },
-    secondary: { main: '#34C3DD' },
+    secondary: { main: '#F1173A' },
   }
 });
 
 const styles = {
   root: {
     width: '100%',
-    height: '100vh',
     backgroundColor: '#0E4787',
   }
 };

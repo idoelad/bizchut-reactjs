@@ -7,6 +7,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Typography from "@material-ui/core/Typography";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Divider from "@material-ui/core/Divider";
+import IconCheck from "@material-ui/icons/Check";
 
 
 const thisStyles = {
@@ -17,17 +18,35 @@ const thisStyles = {
     formItem: {
         backgroundColor: '#FFFFFF',
     },
+    divider: {
+        backgroundColor: 'rgb(255, 255, 255, 0.3)',
+        height: 2,
+        width: '90%',
+        margin: 'auto'
+    },
+    completedIcon: {
+        color: 'white'
+    }
 };
 
 const styles = {...formStyles, ...thisStyles};
 
 class ReportSubjects extends Component {
     
-   
+    renderIcon(CategoryName) {
+        const { classes, wasAnswered} = this.props;
+        return wasAnswered(CategoryName) ? (
+            <IconCheck
+                className={classes.completedIcon}
+                // onClick={this.prevStep}
+            />
+        ) : '';
+    }
+
     render() {
         const subject = 'categoryDetails';
-        const { classes, handleClick } = this.props;
-        
+        const { classes, handleClick, wasAnswered} = this.props;
+
         return (
             <div>
                 <List className={classes.root}>
@@ -35,23 +54,24 @@ class ReportSubjects extends Component {
                         this.props.CategoriesDetails.map((el) =>
                             <React.Fragment key={el.key} >
                             <div className={classes.formItem}>
-                                <ListItem className={classes.subjectItem} name="categoryDetails" 
+                                <ListItem className={classes.subjectItem} name="categoryDetails"
                                     onClick= {() => {handleClick(subject, el); this.props.goToStep() }}
-
                                     >
+                                    {this.renderIcon(el.CategoryName)}
                                     <ListItemText
-                                        primary={<Typography style={{ fontSize: 20, color: 'rgb(255, 255, 255, 0.8)'}}>{el.CategoryName}</Typography>}
+                                        primary={
+                                            <Typography style={{ fontSize: 20, color: 'rgb(255, 255, 255, 0.8)'}}>{el.CategoryName}</Typography>
+                                        }
                                         secondary={
                                             <Typography style={{ fontSize: 14, color: '#FFFFFF' }}>
                                                 מלא פרטים
                                                 <ChevronLeftIcon style={{ fontSize: 17, marginBottom: -4, color: '#FFFFFF' }}/>
                                             </Typography>
                                         }
-                                
                                     />
                                 </ListItem>
-                                </div>
-                                <Divider style={{ backgroundColor: 'rgb(255, 255, 255, 0.3)', height: 2, width: '90%', margin: 'auto' }}/>
+                            </div>
+                            <Divider className={classes.divider}/>
                             </React.Fragment>
                         )
                     }
