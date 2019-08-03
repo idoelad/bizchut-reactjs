@@ -10,6 +10,10 @@ import Divider from "@material-ui/core/Divider";
 import MediaQuery from 'react-responsive'
 
 const styles = {
+    home: {
+      maxWidth: 750,
+      margin: 'auto'
+    },
     topBar: {
         backgroundColor: '#096EDB',
         borderRadius: '0 0 0 20%'
@@ -149,7 +153,7 @@ class Home extends Component {
     render() {
         const { classes } = this.props;
         return (
-            <div className={classes.root}>
+            <div className={classes.home}>
                 <div className={classes.topBar}>
                     {/*<MediaQuery maxWidth={778}>*/}
                         <IconButton className={classes.menuButton} aria-label="Menu" onClick={this.handleDrawerOpen}>

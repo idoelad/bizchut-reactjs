@@ -34,8 +34,8 @@
 /*@media screen and (min-width: 779px) {*/
   .App-root-1 > div:first-child{
     /*margin: 0 200px;*/
-    max-width: 750px;
-    margin: auto;
+    /*max-width: 750px;*/
+    /*margin: auto;*/
   }  
 /*}*/
 
