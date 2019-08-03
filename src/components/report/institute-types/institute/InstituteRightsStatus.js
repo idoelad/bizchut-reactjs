@@ -88,7 +88,7 @@ class InstituteRightsStatus extends Component {
                                         </ListItemText>
                                 </ListItem>
                                 </div>
-                                <Divider style={{ backgroundColor: 'rgb(255, 255, 255, 0.3)', height: 2, width: '90%', margin: 'auto' }}/>
+                                {/* <Divider style={{ backgroundColor: 'rgb(255, 255, 255, 0.3)', height: 2, width: '90%', margin: 'auto' }}/> */}
                             </React.Fragment>
                         )
                     }
