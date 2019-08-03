@@ -94,6 +94,7 @@ const styles = {
     },
     drawerPaper: {
         width: '80%',
+        maxWidth: 275,
         backgroundColor: '#293A50',
         color: '#FFFFFF',
         paddingRight: 25,
@@ -129,6 +130,10 @@ class Home extends Component {
 
     state = { drawerIsOpen: false };
 
+    isDrawerOpen() {
+        return this.state.drawerIsOpen || window.innerWidth > 1400;
+    }
+
     handleDrawerOpen = () => {
         this.setState({ drawerIsOpen: true });
     };
@@ -146,11 +151,11 @@ class Home extends Component {
         return (
             <div className={classes.root}>
                 <div className={classes.topBar}>
-                    <MediaQuery maxWidth={778}>
+                    {/*<MediaQuery maxWidth={778}>*/}
                         <IconButton className={classes.menuButton} aria-label="Menu" onClick={this.handleDrawerOpen}>
                             <MenuIcon />
                         </IconButton>
-                    </MediaQuery>
+                    {/*</MediaQuery>*/}
                     <div className={classes.topBarTitle}>
                         <Typography className={classes.topBarTitleText} variant="h2" gutterBottom>
                                 מוסדות
@@ -182,17 +187,19 @@ class Home extends Component {
                     </div>
                 </div>
                 <div className={classes.footer}/>
-                <MediaQuery maxWidth={770}>
+                {/*<MediaQuery maxWidth={770}>*/}
                     <Drawer
                         variant="persistent"
                         classes={{paper: classes.drawerPaper}}
-                        open={this.state.drawerIsOpen}
+                        open={this.isDrawerOpen()}
                     >
-                        <div className={classes.drawerHeader}>
-                            <IconButton className={classes.drawerHeaderIcon} onClick={this.handleDrawerClose}>
-                                <CloseIcon />
-                            </IconButton>
-                        </div>
+                        {window.innerWidth <= 1400 ?
+                            <div className={classes.drawerHeader}>
+                                <IconButton className={classes.drawerHeaderIcon} onClick={this.handleDrawerClose}>
+                                    <CloseIcon />
+                                </IconButton>
+                            </div>
+                            : ''}
                         <div>
                             <p className={classes.drawerItems} style={{fontWeight: 900, cursor: 'auto'}}>מוסדות</p>
                             <p className={classes.drawerItems} onClick={() => this.props.goTo('power-of-attorney')}>יפויי כח</p>
@@ -208,7 +215,7 @@ class Home extends Component {
                             </div>
                         </div>
                     </Drawer>
-                </MediaQuery>
+                {/*</MediaQuery>*/}
             </div>
         );
     }
