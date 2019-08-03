@@ -72,7 +72,7 @@ class ComplaintPersonalDetails extends Component {
                             />
                         </FormControl>
                         <FormControl variant="outlined" className={classes.formControl}>
-                            <FormLabel className={classes.formLabel} component="legend">הקשר שלי למוסד</FormLabel>
+                            <FormLabel className={classes.formLabel} component="legend">הקשר שלי למסגרת</FormLabel>
                             <Select
                                 className={classes.input}
                                 native
@@ -87,9 +87,10 @@ class ComplaintPersonalDetails extends Component {
                                 }
                             >
                                 <option value="" />
-                                <option value="עובד במוסד">עובד במוסד</option>
-                                <option value="מטופל">מטופל</option>
-                                <option value="קרוב משפחה">קרוב משפחה</option>
+                                <option value="דייר">דייר</option>
+                                <option value="בן משפחה">בן משפחה</option>
+                                <option value="איש צוות">איש צוות</option>
+                                <option value="בקר מוסדות">בקר מוסדות</option>
                                 <option value="אחר">אחר</option>
                             </Select>
                         </FormControl>

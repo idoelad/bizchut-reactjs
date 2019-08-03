@@ -146,6 +146,7 @@ class PowerOfAttorneyForm extends Component {
                         <FormLabel className={classes.formLabel} component="legend">חתימה</FormLabel>
                         <div style={{border: 'solid 1px #000'}}>
                             <SignatureCanvas
+                                backgroundColor='white'
                                 penColor='black'
                                 onEnd={() => handleChange('signature')(this.sigCanvas.getCanvas().toDataURL())}
                                 ref={(ref) => { this.sigCanvas = ref }}

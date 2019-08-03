@@ -591,7 +591,7 @@ class Report extends Component {
               <ChevronRightIcon />
             </IconButton>
             <Typography variant="h6" color="inherit">
-              דיווח על מוסד
+              תנאים במסגרת
             </Typography>
           </Toolbar>
           <div className={classes.lowerToolbar}>

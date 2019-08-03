@@ -43,7 +43,7 @@ const styles = {
     },
     mainDescription: {
         paddingRight: 20,
-        paddingBottom: 70,
+        paddingBottom: 30,
         paddingLeft: 10
     },
     mainDescriptionText: {
@@ -59,10 +59,10 @@ const styles = {
     buttonComplaint: {
         backgroundColor: '#F1173A',
         color: '#FFFFFF',
+        width: '90%',
         height: 50,
-        fontSize: 18,
+        fontSize: 16,
         boxShadow: 'none',
-        width: '80%',
         //width:'400px',
     },
     buttonInstitute: {
@@ -70,10 +70,10 @@ const styles = {
         backgroundColor: 'transparent',
         color: '#FFFFFF',
         border: '4px solid #FFFFFF',
+        width: '90%',
         height: 50,
-        fontSize: 18,
+        fontSize: 16,
         boxShadow: 'none',
-        width: '80%',
         //width:'400px',
     },
     menuButton: {
@@ -157,7 +157,8 @@ class Home extends Component {
                     </div>
                     <div className={classes.topBarDescription}>
                         <Typography className={classes.topBarDescriptionText} variant="h6" gutterBottom>
-                            חווית בעצמך או ראית אירוע שזכויות האדם נפגעות בו? ארגון בזכות פועל למען זכויות אנשים עם מוגבלות במסגרות אלו.
+                            חווית או ראית אירוע של הפרת זכויות אדם במוסד, הוסטל או בית חולים פסיכיאטרי?
+                            יש מה לעשות!
                         </Typography>
                     </div>
                 </div>
@@ -169,15 +170,18 @@ class Home extends Component {
                     </div>
                     <div className={classes.mainDescription}>
                         <Typography className={classes.mainDescriptionText} variant="h6" gutterBottom>
-                            בחרו אחת מהאפשרויות ודווחו לנו על הפרות זכויות אדם של אנשים במוסדות בצורה דיסקרטית ובזמן אמת.
+                            בחרו באחת מהאפשרויות הבאות ודווחו לארגון בזכות באופן דיסקרטי.
                         </Typography>
                     </div>
                     <div className={classes.buttons}>
-                        <Fab variant="extended" aria-label="אני רוצה להגיש תלונה פרטנית" className={classes.buttonComplaint} onClick={(e) => {this.props.goTo('complaint')}}>
-                            אני רוצה להגיש תלונה פרטנית
+                        <Fab variant="extended" aria-label="אני רוצה לדווח על אירוע ספציפי" className={classes.buttonComplaint} onClick={(e) => {this.props.goTo('complaint')}}>
+                            אני רוצה לדווח על אירוע ספציפי
                         </Fab>
-                        <Fab variant="extended" aria-label="אני רוצה לדווח על מוסד בעייתי" className={classes.buttonInstitute} onClick={(e) => {this.props.goTo('report')}}>
-                            אני רוצה לדווח על מוסד בעייתי
+                        <Fab variant="extended" aria-label="אני רוצה למלא שאלון על תנאים במסגרת" className={classes.buttonInstitute} onClick={(e) => {this.props.goTo('report')}}>
+                            אני רוצה למלא שאלון על תנאים במסגרת
+                        </Fab>
+                        <Fab variant="extended" aria-label="אני רוצה עזרה בלצאת לדיור בקהילה" className={classes.buttonInstitute} onClick={(e) => {this.props.goTo('community-house')}}>
+                            אני רוצה עזרה בלצאת לדיור בקהילה
                         </Fab>
                     </div>
                 </div>
@@ -195,9 +199,8 @@ class Home extends Component {
                         </div>
                         <div>
                             <p className={classes.drawerItems} style={{fontWeight: 900, cursor: 'auto'}}>מוסדות</p>
-                            <p className={classes.drawerItems} onClick={() => this.props.goTo('community-house')}>יציאה לדיור בקהילה</p>
-                            <p className={classes.drawerItems} onClick={() => this.redirectTo('https://www.bizchut.org.il/')}>לאתר עמותת בזכות</p>
                             <p className={classes.drawerItems} onClick={() => this.props.goTo('power-of-attorney')}>יפויי כח</p>
+                            <p className={classes.drawerItems} onClick={() => this.redirectTo('https://www.bizchut.org.il/')}>לאתר עמותת בזכות</p>
                         </div>
                         <div>
                             <Divider className={classes.drawerDivider} variant="middle" light={true}/>

@@ -141,7 +141,7 @@ class ComplaintDetails extends Component {
             <div className={classes.root}>
                 <div className={classes.pageTitle}>
                     <Typography variant="h5" color="inherit">
-                        פרטי התלונה
+                        פרטי הדיווח
                     </Typography>
                 </div>
                 <div className={classes.formArea}>
@@ -157,7 +157,7 @@ class ComplaintDetails extends Component {
                                 className={classes.textField}
                                 margin="normal"
                                 variant="outlined"
-                                placeholder="כתבו כאן את פרטי התלונה באופן המפורט ביותר"
+                                placeholder="תיאור המקרה במילים שלך"
                             />
                         </FormControl>
                         <FormControl component="fieldset" className={classes.formControl}>
