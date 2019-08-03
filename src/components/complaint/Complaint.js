@@ -141,7 +141,7 @@ class Complaint extends Component {
 
         switch(step) {
             case 1:
-                this.nextText = 'שמור והמשך לפרטי התלונה';
+                this.nextText = 'שמור והמשך לפרטי הדיווח';
                 this.formPart = (
                     <Institute
                         nextStep={this.nextStep}
@@ -190,7 +190,7 @@ class Complaint extends Component {
                             <ChevronRightIcon />
                         </IconButton>
                         <Typography variant="h6" color="inherit">
-                            הגשת תלונה
+                            דיווח על אירוע ספציפי
                         </Typography>
                     </Toolbar>
                     <div className={classes.lowerToolbar}>
@@ -199,7 +199,7 @@ class Complaint extends Component {
                 </AppBar>
                 {this.formPart}
                 <div className={classes.footerBar}>
-                    <Fab variant="extended" aria-label="שמור והמשך לפרטי התלונה" className={classes.footerButton} onClick={this.nextStep}>
+                    <Fab variant="extended" aria-label="שמור והמשך לפרטי הדיווח" className={classes.footerButton} onClick={this.nextStep}>
                         {this.nextText}
                     </Fab>
                 </div>

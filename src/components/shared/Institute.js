@@ -31,16 +31,16 @@ class Institute extends Component {
             <div>
                 <div className={classes.pageTitle}>
                     <Typography variant="h5" color="inherit">
-                        פרטי המוסד
+                        פרטי המסגרת
                     </Typography>
                 </div>
                 <div className={classes.formArea}>
                     <form className={classes.form}>
                         <FormControl component="fieldset" className={classes.formControl}>
-                            <FormLabel className={classes.formLabel} component="legend">סוג המוסד</FormLabel>
+                            <FormLabel className={classes.formLabel} component="legend">סוג המסגרת</FormLabel>
                             <RadioGroup
-                                aria-label="סוג המוסד"
-                                name="סוג המוסד"
+                                aria-label="סוג המסגרת"
+                                name="סוג המסגרת"
                                 className={classes.formRadio}
                                 onChange={handleChange('instituteType')}
                                 defaultValue={values.instituteType}
@@ -51,24 +51,24 @@ class Institute extends Component {
                             </RadioGroup>
                         </FormControl>
                         <FormControl component="fieldset" className={classes.formControl}>
-                            <FormLabel className={classes.formLabel} component="legend">שם המוסד</FormLabel>
+                            <FormLabel className={classes.formLabel} component="legend">שם המסגרת</FormLabel>
                             <Input
                                 className={classes.input}
                                 placeholder='התשובה שלך'
                                 inputProps={{
-                                    'aria-label': 'שם המוסד',
+                                    'aria-label': 'שם המסגרת',
                                 }}
                                 onChange={handleChange('instituteName')}
                                 defaultValue={values.instituteName}
                             />
                         </FormControl>
                         <FormControl component="fieldset" className={classes.formControl}>
-                            <FormLabel className={classes.formLabel} component="legend">כתובת המוסד (רחוב ועיר)</FormLabel>
+                            <FormLabel className={classes.formLabel} component="legend">כתובת</FormLabel>
                             <Input
                                 className={classes.input}
-                                placeholder='אפשר לציין רק עיר או אזור בארץ'
+                                placeholder='אפשר לציין רק את שם העיר או האיזור'
                                 inputProps={{
-                                    'aria-label': 'כתובת המוסד (רחוב ועיר)',
+                                    'aria-label': 'כתובת',
                                 }}
                                 onChange={handleChange('instituteAddress')}
                                 defaultValue={values.instituteAddress}
