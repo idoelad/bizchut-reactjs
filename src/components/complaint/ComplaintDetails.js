@@ -153,6 +153,33 @@ class ComplaintDetails extends Component {
         ) :  '';
     }
 
+    renderAddRecording() {
+        const { classes, values, addRecording} = this.props;
+        //Temp: do not allow more than 1 recordings
+        return values.recordings.length < 1 ?  (
+            <div className={classes.recordingArea} style={this.state.record ? {border: '1px solid #1A6DE0', borderRadius: 6} : {}}>
+                <Button variant="contained" size="small" className={classes.button}>
+                    <label htmlFor='single'>
+                        {
+                            this.state.record ?
+                                <PauseCircleFilledIcon onClick={(e) => this.handleStopRecording(e)}/> :
+                                <MicIcon onClick={(e) => this.handleStartRecording(e)}/>
+                        }
+
+                    </label>
+                </Button>
+                <ReactMicRecord
+                    record={this.state.record}
+                    className={classes.recordingWave}
+                    onData={this.onData}
+                    onStop={addRecording}
+                    strokeColor="#1A6DE0"
+                    backgroundColor="#FFFFFF"
+                />
+            </div>
+        ) :  '';
+    }
+
     render() {
         const { classes, values, handleChange, removeImage, addRecording} = this.props;
         return (
@@ -216,26 +243,7 @@ class ComplaintDetails extends Component {
                                         </div>
                                     )
                                 }
-                                <div className={classes.recordingArea} style={this.state.record ? {border: '1px solid #1A6DE0', borderRadius: 6} : {}}>
-                                    <Button variant="contained" size="small" className={classes.button}>
-                                        <label htmlFor='single'>
-                                            {
-                                                this.state.record ?
-                                                    <PauseCircleFilledIcon onClick={(e) => this.handleStopRecording(e)}/> :
-                                                    <MicIcon onClick={(e) => this.handleStartRecording(e)}/>
-                                            }
-
-                                        </label>
-                                    </Button>
-                                    <ReactMicRecord
-                                        record={this.state.record}
-                                        className={classes.recordingWave}
-                                        onData={this.onData}
-                                        onStop={addRecording}
-                                        strokeColor="#1A6DE0"
-                                        backgroundColor="#FFFFFF"
-                                    />
-                                </div>
+                                {this.renderAddRecording()}
                             </div>
                         </FormControl>
                     </form>

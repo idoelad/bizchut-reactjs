@@ -11,8 +11,7 @@ import MediaQuery from 'react-responsive'
 
 const styles = {
     home: {
-      maxWidth: 750,
-      margin: 'auto'
+
     },
     topBar: {
         backgroundColor: '#096EDB',

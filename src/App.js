@@ -23,7 +23,9 @@ const theme = createMuiTheme({
 
 const styles = {
   root: {
-    width: '100%',
+    //width: '100%',
+    maxWidth: 750,
+    margin: 'auto',
     backgroundColor: '#0E4787',
   }
 };
