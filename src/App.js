@@ -10,6 +10,7 @@ import CommunityHousing from "./components/community-housing/CommunityHousing";
 import PowerOfAttorney from "./components/power-of-attorney/PowerOfAttorney";
 import Report from "./components/report/Report";
 import ThankYou from './components/thank-you/ThankYou';
+import ReactGA from 'react-ga';
 
 const theme = createMuiTheme({
   typography: {
@@ -30,8 +31,17 @@ const styles = {
   }
 };
 
+
 class App extends Component {
+  isLocalHost() {
+    return window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+  }
+
   componentDidMount() {
+    if (!this.isLocalHost()) {
+      ReactGA.initialize('UA-145051223-1');
+      ReactGA.pageview('home');
+    }
     window.onpopstate = (event) => {
       this.goTo(event.state);
     };
@@ -39,6 +49,7 @@ class App extends Component {
 
   state = {
     path: 'home',
+    lastPath: null,
     chidlren: null,
     props: null
   };
@@ -55,11 +66,11 @@ class App extends Component {
   formSubmissionApi = (type, data) => {
     console.log(data);
     let url;
-    // if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
-    //     url = 'http://localhost:5001/bizchut/us-central1/formSubmittion'
-    // } else {
+    if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+        url = 'http://localhost:5001/bizchut/us-central1/formSubmittion'
+    } else {
         url = 'https://us-central1-bizchut.cloudfunctions.net/formSubmittion';
-    // }
+    }
     return fetch(
         url,
         {
@@ -83,6 +94,12 @@ class App extends Component {
     const { path, props, children } = this.state;
     window.history.pushState(`${path}`, `${path.toUpperCase()}`, `/${path}`);
 
+    if (path !== this.state.lastPath) {
+      if (!this.isLocalHost()) {
+        ReactGA.pageview(path);
+      }
+      this.setState({ lastPath: path })
+    }
     switch(path) {
       case 'home':
         return (
