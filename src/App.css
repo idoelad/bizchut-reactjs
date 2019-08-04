@@ -1,12 +1,12 @@
-@font-face {
-  font-family: 'Assistant';
-  src: url('https://fonts.googleapis.com/css?family=Assistant:Regular');
-  font-style: normal;
-  font-weight: 400;
-}
+/*@font-face {*/
+  /*font-family: 'Assistant';*/
+  /*src: url('https://fonts.googleapis.com/css?family=Assistant:Regular');*/
+  /*font-style: normal;*/
+  /*font-weight: 400;*/
+/*}*/
 .App {
   text-align: center;
-  font-family: 'Assistant', serif;
+  /*font-family: 'Assistant', serif;*/
   font-style: normal;
   font-weight: 400;
 }

@@ -13,10 +13,10 @@ import ThankYou from './components/thank-you/ThankYou';
 
 const theme = createMuiTheme({
   typography: {
-    fontFamily: '"Product Sans", serif',
+    fontFamily: '"Open Sans", serif',
   },
   palette: {
-    primary: { main: '#257BDE' },
+    primary: { main: '#0E4787' },
     secondary: { main: '#F1173A' },
   }
 });

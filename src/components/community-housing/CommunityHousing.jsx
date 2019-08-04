@@ -100,7 +100,7 @@ class CommunityHousing extends Component {
                     <div className={classes.description}>
                         <Typography color="inherit">
                             ארגון בזכות מלווה אנשים המעוניינים לצאת למגורים בקהילה.
-                            תרשום לנו דרכי יצירת קשר איתך המועדפים מבחינתך ונשוחח איתך על כך:
+                            ספר לנו איך נוכל ליצור איתך קשר ונשמח לשוחח איתך על כך:
                         </Typography>
                     </div>
                     <div className="community-housing">

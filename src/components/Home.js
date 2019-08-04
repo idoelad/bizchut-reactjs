@@ -61,7 +61,6 @@ const styles = {
         // alignItems:'center'
     },
     buttonComplaint: {
-        backgroundColor: '#F1173A',
         color: '#FFFFFF',
         width: '90%',
         height: 50,
@@ -71,7 +70,6 @@ const styles = {
     },
     buttonInstitute: {
         marginTop: 30,
-        backgroundColor: 'transparent',
         color: '#FFFFFF',
         border: '4px solid #FFFFFF',
         width: '90%',
@@ -102,7 +100,7 @@ const styles = {
         color: '#FFFFFF',
         paddingRight: 25,
         fontSize: 24,
-        fontFamily: 'Assistant'
+        // fontFamily: 'Assistant'
     },
     drawerItems: {
         paddingBottom: 10,
@@ -178,13 +176,13 @@ class Home extends Component {
                         </Typography>
                     </div>
                     <div className={classes.buttons}>
-                        <Fab variant="extended" aria-label="אני רוצה לדווח על אירוע ספציפי" className={classes.buttonComplaint} onClick={(e) => {this.props.goTo('complaint')}}>
+                        <Fab variant="extended" color='secondary' aria-label="אני רוצה לדווח על אירוע ספציפי" className={classes.buttonComplaint} onClick={(e) => {this.props.goTo('complaint')}}>
                             אני רוצה לדווח על אירוע ספציפי
                         </Fab>
-                        <Fab variant="extended" aria-label="אני רוצה למלא שאלון על תנאים במסגרת" className={classes.buttonInstitute} onClick={(e) => {this.props.goTo('report')}}>
+                        <Fab variant="extended" color='primary' aria-label="אני רוצה למלא שאלון על תנאים במסגרת" className={classes.buttonInstitute} onClick={(e) => {this.props.goTo('report')}}>
                             אני רוצה למלא שאלון על תנאים במסגרת
                         </Fab>
-                        <Fab variant="extended" aria-label="אני רוצה עזרה בלצאת לדיור בקהילה" className={classes.buttonInstitute} onClick={(e) => {this.props.goTo('community-house')}}>
+                        <Fab variant="extended" color='primary' aria-label="אני רוצה עזרה בלצאת לדיור בקהילה" className={classes.buttonInstitute} onClick={(e) => {this.props.goTo('community-house')}}>
                             אני רוצה עזרה בלצאת לדיור בקהילה
                         </Fab>
                     </div>
