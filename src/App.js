@@ -68,8 +68,18 @@ class App extends Component {
     let url;
     if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
         url = 'http://localhost:5001/bizchut/us-central1/formSubmittion'
+        ReactGA.event({
+          category: 'Forms - TEST',
+          action: 'Submission - TEST',
+          label: type+' - TEST'
+        });
     } else {
         url = 'https://us-central1-bizchut.cloudfunctions.net/formSubmittion';
+        ReactGA.event({
+          category: 'Forms',
+          action: 'Submission',
+          label: type
+        });
     }
     return fetch(
         url,
